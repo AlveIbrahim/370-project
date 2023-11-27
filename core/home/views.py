@@ -6,10 +6,13 @@ def index(request):
     # return HttpResponse('this is home page')
 
 def rs(request):
-    return HttpResponse('this is Ride Sharing page')
+    return render(request, 'rideshare.html')
+    #return HttpResponse('this is Ride Sharing page')
 
-def rant(request):
-    return HttpResponse('this is rant page')
+def rent(request):
+    return render(request, 'rent.html')
+    #return HttpResponse('this is rant page')
 
-def contact(request):
-    return HttpResponse('this is contact page')
+def car_Listing(request):
+    return render(request, 'car_listing.html')
+    #return HttpResponse('this is contact page')
