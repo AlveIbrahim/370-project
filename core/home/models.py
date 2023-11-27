@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractUser
 
 class Customer(AbstractUser):
     Customer_Nid=models.IntegerField(blank = False, null = False, default=0)
-
     Dob=models.DateField(auto_now=False, blank = True, null = True)
     Adress=models.CharField(null=False, max_length=200, default='')
     phn=models.CharField(max_length=11, blank = False, null = False, default='')
@@ -15,9 +14,10 @@ class car_listing(models.Model):
     model=models.CharField(max_length=200)
     num_plate=models.CharField(max_length=7)
     num_of_seat=models.IntegerField(blank = False, null = False, default=0)
-    has_car=models.BooleanField(blank=False, null=False, default=False)
-    Driver_driving_license=models.ImageField(upload_to='static/', null=True, blank=True)
     Drivers_Nid=models.IntegerField(blank = True, null = True, default=0)
+    has_car=models.CharField(max_length=7)
+    # Driver_driving_license=models.ImageField(upload_to='image/', null=True, blank=True)
+    
 
 class Car(models.Model):
     info=models.ForeignKey(car_listing, on_delete = models.CASCADE)
