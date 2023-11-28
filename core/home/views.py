@@ -72,8 +72,4 @@ def login(request):
 def logout(request):
     auth_logout(request)
     messages.warning(request, 'You were logged out')
-<<<<<<< HEAD
     return redirect('home')
-=======
-    return redirect('home')
->>>>>>> fa0b78e28eb1464b8d1813024a8d3b7482331371
