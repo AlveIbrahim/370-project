@@ -26,7 +26,7 @@ def car_Listing(request):
         c_l = cl(request.POST, request.FILES)
         if c_l.is_valid():
             c_l.save()
-            return redirect('home')
+            return redirect('home_after_login')
     else:
         c_l = cl()
     return render(request, 'car_listing.html', {'CL':c_l})
@@ -72,4 +72,8 @@ def login(request):
 def logout(request):
     auth_logout(request)
     messages.warning(request, 'You were logged out')
+<<<<<<< HEAD
     return redirect('home')
+=======
+    return redirect('home')
+>>>>>>> fa0b78e28eb1464b8d1813024a8d3b7482331371
