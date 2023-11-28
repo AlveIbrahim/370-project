@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class Customer(AbstractUser):
     Customer_Nid=models.IntegerField(blank = False, null = False, default=0)
     Dob=models.DateField(auto_now=False, blank = True, null = True)
-    Adress=models.CharField(null=False, max_length=200, default='')
+    Address=models.CharField(null=False, max_length=200, default='')
     phn=models.CharField(max_length=11, blank = False, null = False, default='')
     
 

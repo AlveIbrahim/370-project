@@ -1,5 +1,8 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse
 from home.models import car_listing
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import SignupForm
+from django.contrib.auth import login
 
 # Create your views here.
 def index(request):
@@ -26,3 +29,16 @@ def car_Listing(request):
         car_Listing.save()
     return render(request, 'car_listing.html')
     #return HttpResponse('this is contact page')
+
+def signup(request):
+    if request.method == 'POST':
+        signup = SignupForm(request.POST)
+        if signup.is_valid():
+            user = signup.save()
+            login(request, user)
+            return redirect('home')
+        else:
+            return redirect('signup')
+    else:
+        signup = SignupForm()
+    return render(request, 'signup.html', {'Signup':signup})
