@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from home.models import car_listing
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .forms import SignupForm, cl
+from .forms import SignupForm, cl, lst
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
 
 # Create your views here.
@@ -30,18 +30,6 @@ def car_Listing(request):
     else:
         c_l = cl()
     return render(request, 'car_listing.html', {'CL':c_l})
-    # if request.method=="POST":
-    #     model=request.POST.get("model")
-    #     num_plate=request.POST.get("num_plate")
-    #     num_of_seat=request.POST.get("num_of_seat")
-    #     Drivers_Nid=request.POST.get("Drivers_Nid")
-    #     has_car=request.POST.get("has_car")
-    #     Car_image=request.POST.get("Car_image")
-    #     # Driver_driving_license.POST.get("Driver_driving_license")
-    #     car_Listing=car_listing(model=model, num_plate=num_plate, num_of_seat=num_of_seat, Drivers_Nid=Drivers_Nid, has_car=has_car, Car_image=Car_image)
-    #     car_Listing.save()
-    # return render(request, 'car_listing.html')
-    #return HttpResponse('this is contact page')
 
 def signup(request):
     if request.method == 'POST':
@@ -73,3 +61,13 @@ def logout(request):
     auth_logout(request)
     messages.warning(request, 'You were logged out')
     return redirect('home')
+
+def book(request):
+    if request.method == 'POST':
+        bk = lst(request.POST, request.FILES)
+        if bk.is_valid():
+            bk.save()
+            return redirect('home_after_login')
+    else:
+        bk = lst()
+    return render(request, 'carinfo.html', {'BK':bk})
