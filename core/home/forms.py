@@ -5,8 +5,8 @@ from .models import Customer, car_listing
 
 
 class SignupForm(UserCreationForm):
-    #login_id = forms.CharField()
-    #password = forms.CharField(max_length=100)
+    # login_id = forms.CharField()
+    # password = forms.CharField(max_length=100)
     Customer_Nid = forms.IntegerField()
     Dob = forms.DateField()
     Address = forms.CharField()
@@ -22,4 +22,10 @@ class cl(ModelForm):
     
     class Meta:
         model=car_listing
-        fields=('model', 'num_plate', 'num_of_seat', 'Drivers_Nid','has_car','Car_image','Driver_driving_license')
+        fields=('model', 
+        'num_plate', 
+        'num_of_seat', 
+        'Drivers_Nid',
+        'has_car',
+        'Car_image',
+        'Driver_driving_license')
