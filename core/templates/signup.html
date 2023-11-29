@@ -1,4 +1,64 @@
 <!DOCTYPE html>
+
+<html><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font: 400 15px/1.8 "Lato", sans-serif;
+      color: #7E7776;
+    }
+    
+ 
+    
+    
+    .bgimg-1 {
+      background-image: url("/static/1.jpeg");
+      height: 50%;
+    }
+    
+    .caption {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      text-align: left;
+      
+      color: #000;
+    }
+    
+    .caption form.signup {
+      background-color: none;
+      color: #000000;
+      padding: 0px;
+      align: center;
+      font-size: 17px;
+      letter-spacing: 2px;
+    }
+    
+    </style>
+    </head>
+    <body>
+    
+    <div class="bgimg-1" align='left'>
+      <div class="caption">
+        <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+        <form class="signup" method="post">
+            {% csrf_token %}
+            {{Signup}}
+            <input type="submit" value="Signup_Request">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
 <html>
 <h1>Boro vi</h1>
 <h2>Signup</h2>
@@ -8,4 +68,4 @@
     <input type="submit" value="Signup_Request">
 </form>
 </body>
-</html>
+</html> {% endcomment %}
