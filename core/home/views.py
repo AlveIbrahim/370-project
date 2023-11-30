@@ -70,4 +70,4 @@ def book(request):
             return redirect('home_after_login')
     else:
         bk = lst()
-    return render(request, 'carinfo.html', {'BK':bk})
+    return render(request, 'rentform.html', {'BK':bk})

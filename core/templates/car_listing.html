@@ -1,4 +1,143 @@
 <!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: "Lato", sans-serif;
+            color: #7E7776;
+            background-color: #F5F5F5;
+        }
+
+        .bgimg-1 {
+            background-image: url("/static/17.jpg");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .caption {
+            position: absolute;
+            left: 0;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+            color: #000;
+        }
+
+        .caption h1 {
+            font-size: 2em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .caption form.cl {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            padding: 20px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+        }
+
+        .caption form.cl input[type="submit"] {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="bgimg-1">
+        <div class="caption">
+            <form class="cl" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Car Listing</h1>
+                {{CL}}
+                <input type="submit" value="List">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+{% comment %} ---------------------------------------- {% endcomment %}
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: "Lato", sans-serif;
+            color: #7E7776;
+            background-color: #F5F5F5;
+        }
+
+        .bgimg-1 {
+            background-image: url("/static/17.jpg");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .caption {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+            color: #000;
+        }
+
+        .caption h1 {
+            font-size: 2em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .caption form.cl {
+            background-color: transparent;
+            color: #000000;
+            padding: 20px;
+            border: 2px solid #000;
+            border-radius: 10px;
+        }
+
+        .caption form.cl input[type="submit"] {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="bgimg-1">
+        <div class="caption">
+            <h1>Car Listing</h1>
+            <form class="cl" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{CL}}
+                <input type="submit" value="List">
+            </form>
+        </div>
+    </div>
+</body>
+</html> {% endcomment %}
+
+
+{% comment %} <!DOCTYPE html>
 
 <html><head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +153,8 @@
     
     
     .bgimg-1 {
-      background-image: url("/static/3.jpeg");
-      height: 50%;
+      background-image: url("/static/14.jpg");
+      height: 100%;
     }
     
     .caption {
@@ -50,4 +189,4 @@
             <input type="submit" value="List">
         </form>
     </body>
-</html>
+</html> {% endcomment %}
