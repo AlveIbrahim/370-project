@@ -71,3 +71,4 @@ def book(request):
     else:
         bk = lst()
     return render(request, 'rentform.html', {'BK':bk})
+
