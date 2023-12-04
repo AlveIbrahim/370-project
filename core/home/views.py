@@ -1,17 +1,10 @@
 from django.shortcuts import render, redirect, HttpResponse
-<<<<<<< HEAD
-from home.models import car_listing
-=======
 from home.models import car_listing, Customer, Car
->>>>>>> 2ffdf4b4a804174c8f7e25753a8b170e56055424
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from .forms import SignupForm, cl, lst
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
-<<<<<<< HEAD
-=======
 from django.db.models import Q
->>>>>>> 2ffdf4b4a804174c8f7e25753a8b170e56055424
 
 # Create your views here.
 def index(request):
@@ -80,8 +73,6 @@ def book(request):
         bk = lst()
     return render(request, 'rentform.html', {'BK':bk})
 
-<<<<<<< HEAD
-=======
 def search_feature(request):
     if request.method == 'POST':
         search_query = request.POST['search_query']
@@ -90,4 +81,3 @@ def search_feature(request):
     else:
         return render(request, 'search.html',{})
 
->>>>>>> 2ffdf4b4a804174c8f7e25753a8b170e56055424
