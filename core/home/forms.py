@@ -16,7 +16,11 @@ class SignupForm(UserCreationForm):
 
     class Meta:
         model = Customer
+<<<<<<< HEAD
         fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'Customer_Nid', 'Dob','Address','phn','clocation')
+=======
+        fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'Customer_Nid', 'Dob','Address','phn')
+>>>>>>> 2ffdf4b4a804174c8f7e25753a8b170e56055424
 
 
 class cl(ModelForm):
@@ -29,7 +33,12 @@ class cl(ModelForm):
         'Drivers_Nid',
         'has_car',
         'Car_image',
+<<<<<<< HEAD
         'Driver_driving_license')
+=======
+        'Driver_driving_license',
+        'clocation')
+>>>>>>> 2ffdf4b4a804174c8f7e25753a8b170e56055424
 
 class lst(ModelForm):
     
@@ -39,3 +48,10 @@ class lst(ModelForm):
 
 
 
+<<<<<<< HEAD
+=======
+class SearchForm(ModelForm):
+    class Meta:
+        fields = ('location','seatnumber')
+  
+>>>>>>> 2ffdf4b4a804174c8f7e25753a8b170e56055424
