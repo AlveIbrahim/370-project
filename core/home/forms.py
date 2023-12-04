@@ -11,11 +11,12 @@ class SignupForm(UserCreationForm):
     Dob = forms.DateField()
     Address = forms.CharField()
     phn = forms.CharField()
+    clocation = forms.CharField()
     
 
     class Meta:
         model = Customer
-        fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'Customer_Nid', 'Dob','Address','phn')
+        fields = ('username', 'password1', 'password2', 'first_name', 'last_name', 'Customer_Nid', 'Dob','Address','phn','clocation')
 
 
 class cl(ModelForm):
@@ -35,4 +36,6 @@ class lst(ModelForm):
     class Meta:
         model=Car
         fields=('info', 'customer_licence')
+
+
 
