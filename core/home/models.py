@@ -8,6 +8,7 @@ class Customer(AbstractUser):
     Dob=models.DateField(auto_now=False, blank = True, null = True)
     Address=models.CharField(null=False, max_length=200, default='')
     phn=models.CharField(max_length=11, blank = False, null = False, default='')
+    clocation=models.CharField(max_length=200, default='')
     
 
 class car_listing(models.Model):
@@ -24,6 +25,3 @@ class car_listing(models.Model):
 class Car(models.Model):
     info=models.ForeignKey(car_listing, on_delete = models.CASCADE)
     customer_licence=models.ImageField(upload_to='cimage/', null=True, blank=True)
-
-
-
