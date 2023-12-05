@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, HttpResponse
-from home.models import car_listing, Customer, Car
+from home.models import car_listing, Customer, Car, Payment
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .forms import SignupForm, cl, lst
+from .forms import SignupForm, cl, lst, payment_rent
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
 from django.db.models import Q
 
@@ -80,4 +80,15 @@ def search_feature(request):
         return render(request, 'search.html', {'query':search_query, 'posts':posts})
     else:
         return render(request, 'search.html',{})
+
+
+def payment(request):
+    if request.method == 'POST':
+        pay = payment_rent(request.POST, request.FILES)
+        if pay.is_valid():
+            pay.save()
+            return redirect('home_after_login')
+    else:
+        pay = payment_rent()
+    return render(request, 'payment.html', {'Payment':pay})
 

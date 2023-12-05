@@ -26,3 +26,8 @@ class car_listing(models.Model):
 class Car(models.Model):
     info=models.ForeignKey(car_listing, on_delete = models.CASCADE)
     customer_licence=models.ImageField(upload_to='cimage/', null=True, blank=True)
+
+
+class Payment(models.Model):
+    tran_number=models.IntegerField(blank = True, null = True, default=0)
+    amount=models.IntegerField(blank = True, null = True, default=0)
