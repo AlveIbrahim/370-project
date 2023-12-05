@@ -38,11 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-<<<<<<< HEAD
 VIRTUAL_ENV="C:\Users\USER\Desktop\370-project-master\venv"
-=======
-VIRTUAL_ENV="C:\Users\alnfi\Downloads\New folder\370-project-master\venv"
->>>>>>> e3963b4bdd5a0b354d5177f12a75307aa8a5de01
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
