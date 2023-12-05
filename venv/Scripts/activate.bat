@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set VIRTUAL_ENV=C:\Users\USER\Desktop\370-project-master\venv
+=======
+set VIRTUAL_ENV=C:\Users\alnfi\Downloads\New folder\370-project-master\venv
+>>>>>>> e3963b4bdd5a0b354d5177f12a75307aa8a5de01
 
 if not defined PROMPT set PROMPT=$P$G
 
