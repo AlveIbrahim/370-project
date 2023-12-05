@@ -1,22 +1,33 @@
+
+{% block content %}
+
 {% if query %}
-    <div>
-        <div>
-        <!-- check if there is a result in the database-->
+<div class='container mt-4' style='width: 800px'>
+    <div class='col d-flex justify-content-center'>
+        <div class='row w-100'>
         {% if posts %}
-            <!-- loop through search query if there is a result -->
             {% for post in posts %}
-                <div>
-                    <!-- return search query -->
-                    <p>{{post.Car_image}}</p>
-                    <p>{{post.model}}</p>
-                </div>
+                <li class="list-group-item w-100">
+                    <div class='row w-100'>
+                        <div class="col-lg-3">
+                            <a href="/payment"><img src="{{post.Car_image.url}}" class='img object-fit-cover border-0 rounded'  style="height: 100px; width: 100px"></a>
+                         </div>
+                        <div class="col-lg">
+            
+                            <a class = 'text-secondary' href="/payment"> Model Type: {{ post.model }} </a>
+                            <h6>Price: {{ post.price }}TK</h6>
+                        </div>
+                    </div>
+                </li>
             {% endfor %}
-            <!-- return a message if there are no results found. -->
         {% else %}
             <h3>No search results found</h3>
         {% endif %}
         </div>
     </div>
+</div>
 {% else %}
     <h1>Please enter a search query</h1>
 {% endif %}
+
+{% endblock content %}

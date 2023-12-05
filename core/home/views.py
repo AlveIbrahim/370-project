@@ -77,7 +77,10 @@ def search_feature(request):
     if request.method == 'POST':
         search_query = request.POST['search_query']
         posts = car_listing.objects.filter(clocation=search_query)
-        return render(request, 'search.html', {'query':search_query, 'posts':posts})
+        return render(request, 'search.html', {
+            'query':search_query, 
+            'posts':posts            
+               })
     else:
         return render(request, 'search.html',{})
 
@@ -92,3 +95,18 @@ def payment(request):
         pay = payment_rent()
     return render(request, 'payment.html', {'Payment':pay})
 
+
+def car_catalog(request):
+    car = car_listing.objects.all()
+    car_show=list(car)
+
+    return render(request, 'car_catalog.html',{
+        'products': car_show
+    })
+
+def car_info(request,car_id):
+    cr = car_listing.objects.get(pk=car_id)
+
+    return render(request, 'car_catalog.html', {
+        'info':cr
+    })
