@@ -1,0 +1,140 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: "Lato", sans-serif;
+            font-size: 15px;
+            color: #000;
+            background-color: #f4f4f4;
+        }
+        .bgimg-1 {
+            background-image: url("/static/9.jpeg");
+            height: 100%;
+            background-size: cover;
+        }
+        .caption {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+        }
+        .caption form.login {
+            font-size: 17px;
+            letter-spacing: 2px;
+            background-color: rgba(0,0,0,0.6);
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .caption u {
+            font-size: 17px;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bgimg-1">
+        <div class="caption">
+            <form class="login" method="post">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 fw-normal">Log In</h1>
+                {{Login}}
+                <input type="submit" value="login_Request">
+            </form>
+            <u class="card-text">New User.</u>
+            <a class="btn btn-primary" href="/signup" role="button">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+{% comment %} <!DOCTYPE html>
+
+<html><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font: 400 15px/1.8 "Lato", sans-serif;
+      color: #000;
+    }
+    
+ 
+    
+    
+    .bgimg-1 {
+      background-image: url("/static/9.jpeg");
+      height: 100%;
+    }
+    
+    .caption {
+      position: absolute;
+      left: 0;
+      top: 30%;
+      width: 100%;
+      text-align: center;
+      
+      color: #000;
+    }
+
+    .caption form.login {
+        background-color: none;
+        color: #fff;
+        padding: 0px;
+        align: center;
+        font-size: 17px;
+        letter-spacing: 2px;
+      }
+    
+      .caption u {
+        background-color: none;
+        color: #fff;
+        padding: 0px;
+        align: center;
+        font-size: 17px;
+        letter-spacing: 2px;
+      }
+    
+
+    
+     
+
+    </style>
+    </head>
+    <body>
+        <div class="bgimg-1">
+            <div class="caption">
+                <form class="login" method="post">
+                    {% csrf_token %}
+                    <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+                    {{Login}}
+                    <input type="submit" value="login_Request">
+                </form>
+                <u class="card-text">New User.</u>
+                <a class="btn btn-primary" href="/signup" role="button"><button>Sign Up</button></a>
+              
+              
+            </div>
+          </div>
+    </body>
+</html> {% endcomment %}
+    
+
+
+
