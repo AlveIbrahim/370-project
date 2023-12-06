@@ -21,7 +21,10 @@ class car_listing(models.Model):
     Driver_driving_license=models.ImageField(upload_to='image/', null=True, blank=True)
     clocation=models.CharField(max_length=200, blank = False, null = False, default='')
     
-    
+class share(models.Model):
+    sharer=models.ForeignKey(Customer, on_delete = models.CASCADE)
+    location = models.CharField(null = False)
+    destination = models.CharField(null = False)
 
 class Car(models.Model):
     info=models.ForeignKey(car_listing, on_delete = models.CASCADE)
