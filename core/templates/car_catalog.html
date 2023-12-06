@@ -1,35 +1,46 @@
 <!DOCTYPE html>
-<html>
-<body>
-    <div class='container mt-4' style='width: 800px'>
-        <div class='col d-flex justify-content-center'>
-            <div class='row w-100'>
-                <h1> {{title}} </h1>
-                <div class="cart-container">
-                    <div class="card">
-                        <ul class="list-group list-group-flush">
-                            {% for item in products %}
-                                <li class="list-group-item w-100">
-                                    <div class='row w-100'>
-                                        <div class="col-lg-3">
-                                            <img src="{{item.pic.url}}" class='img object-fit-cover border-0 rounded' style="height: 100px; width: 100px">
-                                        </div>
-                                        <div class="col-lg">
-                                            <h5><a class='text-decoration-none' href="{% url 'house' house_id=item.pk %}">{{ item.location }}</a></h5>
-                                            <h6 class = 'text-secondary'> Tenant Type: {{ item.type }} </h6>
-                                            <h6>Price: {{ item.price }}TK</h6>
-                                        </div>
-                                    </div>
-                                </li>
-                            {% endfor %}
-    
-                        </ul>
-                    </div>
-    
-                </div>
-            </div>
-        </div>
-    </div>
 
-</body>
-</html>
+<div class='container position-absolute top-50 start-50 translate-middle bg-light text-dark rounded shadow p-3 mb-5 bg-body-tertiary rounded'>
+    <div class='d-flex flex-row'>
+        {% for product in products %}
+        <div class='col-md-4'>
+            <img src='{{ product.pic.url }}' class='w-100' style='max-height:500px'>
+        </div>
+        <div class=' d-flex flex-column mb-3 px-4 justify-content-between'>
+            <div>
+                
+                <div class="alert alert-success" role="alert">
+                    <h4>Basic Informations</h4>
+                    <img src="{{product.Car_image.url}}" class='img object-fit-cover border-0 rounded' style="height: 100px; width: 100px">
+                  </div>
+                <div class="container text-center border border-rounded border-2 p-3 my-3">
+                    <div class="row gap-0">
+                        <div class="col">
+                            <span class="material-symbols-outlined"></span>
+                            <span class='fw-medium'> Model: </span> {{ product.model }}
+                            
+                        </div>
+                        <div class="vr p-0"></div>
+                        <div class="col">
+                            <span class="material-symbols-outlined"></span>
+                            <span class='fw-medium'> number plate: </span> {{ product.num_plate }}
+                        </div>
+                        
+                        <div class="vr p-0" ></div>
+                        <div class="col">
+
+                            <span class='fw-medium'> number of seat: </span> {{ product.num_of_seat }}seats
+                        </div>
+                    </div>
+                </div>  
+                <div class="container text-center border border-rounded border-2 p-3 my-3">
+                    <div class="row gap-0">
+                        <div class="col">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <span class='fw-medium' > Location: </span><br> {{ product.clocation }}
+                            
+                    </div>
+                </div> 
+                <p>{{ product.has_car }}</p>   
+            </div>
+        {% endfor %}     
