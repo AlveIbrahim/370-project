@@ -132,3 +132,5 @@ AUTH_USER_MODEL = 'home.Customer'
 MEDIA_URL = '/image/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'image')
+
+LOGIN_URL = 'login.html'

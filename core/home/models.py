@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxValueValidator,MinValueValidator
 
 # Create your models here.
 
@@ -23,8 +24,9 @@ class car_listing(models.Model):
     
 class share(models.Model):
     sharer=models.ForeignKey(Customer, on_delete = models.CASCADE)
-    location = models.CharField(null = False)
-    destination = models.CharField(null = False)
+    location = models.CharField(null = False, max_length=200)
+    destination = models.CharField(null = False, max_length=200)
+    seats = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(15)])
 
 class Car(models.Model):
     info=models.ForeignKey(car_listing, on_delete = models.CASCADE)
