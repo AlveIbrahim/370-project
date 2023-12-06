@@ -104,9 +104,4 @@ def car_catalog(request):
         'products': car_show
     })
 
-def car_info(request,car_id):
-    cr = car_listing.objects.get(pk=car_id)
 
-    return render(request, 'car_catalog.html', {
-        'info':cr
-    })
