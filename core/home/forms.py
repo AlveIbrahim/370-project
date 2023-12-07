@@ -11,7 +11,7 @@ class SignupForm(UserCreationForm):
     Dob = forms.DateField()
     Address = forms.CharField()
     phn = forms.CharField()
-    # clocation = forms.CharField()
+    clocation = forms.CharField()
     
 
     class Meta:

@@ -21,14 +21,16 @@ def rs(request):
     if request.method == 'POST':
         share_query = ShareSearch(request.POST)
         if share_query.is_valid():
-            print(share_query.cleaned_data)
             cars = share.objects.filter(location=share_query.cleaned_data["location"])
             destination = share_query.cleaned_data["destination"]
             return render(request, 'rideshare.html', {
+                'Share_Search':ShareSearch(),
                 'share_query':share_query, 
                 'cars':cars,
                 'destination':destination            
                 })
+        else:
+            print(share_query.errors.as_data())
     else:
         share_query = ShareSearch()
     return render(request, 'rideshare.html', {'Share_Search':share_query})
@@ -45,6 +47,8 @@ def car_Listing(request):
         if c_l.is_valid():
             c_l.save()
             return redirect('home_after_login')
+        else:
+            print(c_l.errors.as_data())
     else:
         c_l = cl()
     return render(request, 'car_listing.html', {'CL':c_l})
@@ -57,6 +61,7 @@ def signup(request):
             auth_login(request, user)
             return redirect('home_after_login')
         else:
+            print(signup.errors.as_data())
             return redirect('signup')
     else:
         signup = SignupForm()
@@ -70,6 +75,7 @@ def login(request):
             auth_login(request,user)
             return redirect('home_after_login')
         else:
+            print(login_form.errors.as_data())
             return redirect('login')
     else:
         login_form = AuthenticationForm()
@@ -111,6 +117,8 @@ def payment(request):
         if pay.is_valid():
             pay.save()
             return redirect('home_after_login')
+        else:
+            print(pay.errors.as_data())
     else:
         pay = payment_rent()
     return render(request, 'payment.html', {'Payment':pay})
@@ -133,6 +141,8 @@ def share_car(request):
             complete_share.sharer = request.user
             complete_share.save()
             return redirect('rs')
+        else:
+            print(share.errors.as_data())
     else:
         share = car_share()
     print(request.user)
