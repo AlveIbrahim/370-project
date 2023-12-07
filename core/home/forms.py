@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Customer, car_listing, Car, Payment
+from .models import Customer, car_listing, Car, Payment, share
 
 
 class SignupForm(UserCreationForm):
@@ -44,9 +44,19 @@ class SearchForm(ModelForm):
     class Meta:
         fields = ('location','seatnumber')
 
+class ShareSearch(forms.Form):
+    location = forms.CharField(max_length=200)
+    destination = forms.CharField(max_length=200)
+
 class payment_rent(ModelForm):
     
     class Meta:
         model=Payment
         fields=('tran_number', 'amount')
+
+class car_share(ModelForm):
+
+    class Meta:
+        model = share
+        fields = ('location','destination','type','seats')
   

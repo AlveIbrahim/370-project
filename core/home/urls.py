@@ -18,7 +18,9 @@ urlpatterns = [
     path('book', views.book, name='book'),
     path('search', views.search_feature, name='search'),
     path('payment', views.payment, name='payment'),
-    path('car_catalog', views.car_catalog, name='car_catalog')
+    path('car_catalog', views.car_catalog, name='car_catalog'),
+    path('share_form', views.share_car, name='share_form'),
+    path('share_search', views.rideshare_search, name='share_search')
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
