@@ -131,10 +131,6 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'home.Customer'
 MEDIA_URL = '/image/'
 
-<<<<<<< HEAD
-MEDIA_ROOT = os.path.join(BASE_DIR, 'image')
-=======
 MEDIA_ROOT = os.path.join(BASE_DIR, 'image')
 
 LOGIN_URL = 'login'
->>>>>>> 91511a6d896fbdcdd552c472606b49240147a990
