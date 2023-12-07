@@ -129,11 +129,13 @@ def share_car(request):
     if request.method == 'POST':
         share = car_share(request.POST)
         if share.is_valid():
-            share.save()
+            complete_share = share.save(commit=False)
+            complete_share.sharer = request.user
+            complete_share.save()
             return redirect('rs')
     else:
         share = car_share()
-    print(request.user.id)
+    print(request.user)
     return render(request, 'share_form.html', {'Car_Share':share})
 
 #cant be bothered to remove below view
