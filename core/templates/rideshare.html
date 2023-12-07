@@ -85,7 +85,8 @@
   {% if cars %}
     {% for car in cars %}
       {% if destination == car.destination %}
-        <div class="card">
+        {% if current_user !=  car.sharer %}
+          <div class="card">
             <a href="/payment"><img src="{{post.Car_image.url}}" class="card-img-top" alt="..."></a>
               <div class="card-body">
                 <h5 class="card-title">Model Type: {{ car.type }}</h5>
@@ -94,9 +95,10 @@
                 <p class="card-text">Destination: {{ car.destination }}</p>
                 <p class="card-text">Number of Seats: {{ car.seats }}</p>
               </div>
-        </div>
+          </div>
         {% endif %}
-      {% endfor %}
+        {% endif %}
+    {% endfor %}
       {% else %}
               <h3 style="color: #fff;">Please input your location</h3>
       {% endif %}
