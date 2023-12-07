@@ -44,6 +44,10 @@ class SearchForm(ModelForm):
     class Meta:
         fields = ('location','seatnumber')
 
+class ShareSearch(forms.Form):
+    location = forms.CharField(max_length=200)
+    destination = forms.CharField(max_length=200)
+
 class payment_rent(ModelForm):
     
     class Meta:
@@ -54,5 +58,5 @@ class car_share(ModelForm):
 
     class Meta:
         model = share
-        fields = ('location','destination','seats')
+        fields = ('location','destination','type','seats')
   

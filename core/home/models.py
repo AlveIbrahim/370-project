@@ -26,6 +26,7 @@ class share(models.Model):
     sharer=models.ForeignKey(Customer, on_delete = models.CASCADE)
     location = models.CharField(null = False, max_length=200)
     destination = models.CharField(null = False, max_length=200)
+    type = models.CharField(null=False, max_length=100, default='')
     seats = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(15)])
 
 class Car(models.Model):

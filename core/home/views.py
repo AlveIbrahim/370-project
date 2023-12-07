@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, HttpResponse
-from home.models import car_listing, Customer, Car, Payment
+from home.models import car_listing, Customer, Car, Payment, share
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .forms import SignupForm, cl, lst, payment_rent, car_share
+from .forms import SignupForm, cl, lst, payment_rent, car_share, ShareSearch
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -18,8 +18,20 @@ def home_after_login(request):
 
 @login_required()
 def rs(request):
-    return render(request, 'rideshare.html')
-    #return HttpResponse('this is Ride Sharing page')
+    if request.method == 'POST':
+        share_query = ShareSearch(request.POST)
+        if share_query.is_valid():
+            print(share_query.cleaned_data)
+            cars = share.objects.filter(location=share_query.cleaned_data["location"])
+            destination = share_query.cleaned_data["destination"]
+            return render(request, 'rideshare.html', {
+                'share_query':share_query, 
+                'cars':cars,
+                'destination':destination            
+                })
+    else:
+        share_query = ShareSearch()
+    return render(request, 'rideshare.html', {'Share_Search':share_query})
 
 @login_required()
 def rent(request):
@@ -121,5 +133,22 @@ def share_car(request):
             return redirect('rs')
     else:
         share = car_share()
+    print(request.user.id)
     return render(request, 'share_form.html', {'Car_Share':share})
 
+#cant be bothered to remove below view
+@login_required()
+def rideshare_search(request):
+    context = {'Share_Search':ShareSearch()}
+    if request.method == 'POST':
+        share_query = ShareSearch(request.POST)
+        cars = car_share.objects.filter(location=share_query.cleaned_data["location"])
+        destination = share_query.cleaned_data["destination"]
+        return render(request, 'rideshare.html', {
+            'share_query':share_query, 
+            'cars':cars,
+            'destination':destination            
+               })
+    # else:
+    #     share_query = ShareSearch()
+    return render(request, 'rideshare.html', context=context)

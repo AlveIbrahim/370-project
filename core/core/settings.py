@@ -133,4 +133,4 @@ MEDIA_URL = '/image/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'image')
 
-LOGIN_URL = 'login.html'
+LOGIN_URL = 'login'
