@@ -23,11 +23,13 @@ def rs(request):
         if share_query.is_valid():
             cars = share.objects.filter(location=share_query.cleaned_data["location"])
             destination = share_query.cleaned_data["destination"]
+            current_user = request.user
             return render(request, 'rideshare.html', {
                 'Share_Search':ShareSearch(),
                 'share_query':share_query, 
                 'cars':cars,
-                'destination':destination            
+                'destination':destination,
+                'current_user':current_user
                 })
         else:
             print(share_query.errors.as_data())

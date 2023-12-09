@@ -77,7 +77,6 @@
             <form class="d-flex" role="search" method="post">
               {% csrf_token %}
               {{ Share_Search.as_p }}
-              <h1 class="h3 mb-3 fw-normal">Location and Destination</h1>
               <input type="submit" value="Share Search">
            </form>
           </div>
@@ -85,6 +84,7 @@
   {% if cars %}
     {% for car in cars %}
       {% if destination == car.destination %}
+       {% if current_user != car.sharer %}
         <div class="card">
             <a href="/payment"><img src="{{post.Car_image.url}}" class="card-img-top" alt="..."></a>
               <div class="card-body">
@@ -95,6 +95,7 @@
                 <p class="card-text">Number of Seats: {{ car.seats }}</p>
               </div>
         </div>
+        {% endif %}
         {% endif %}
       {% endfor %}
       {% else %}
