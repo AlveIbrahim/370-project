@@ -1,0 +1,72 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: "Lato", sans-serif;
+            font-size: 15px;
+            color: #000;
+            background-color: #f4f4f4;
+        }
+        .bgimg-1 {
+            background-image: url("/static/9.jpeg");
+            height: 100%;
+            background-size: cover;
+        }
+        .caption {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+        }
+        .caption form.login {
+            font-size: 17px;
+            letter-spacing: 2px;
+            background-color: rgba(0,0,0,0.6);
+            padding: 40px;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            width: 30%; /* Full width */
+            padding: 15px; /* Add some padding */
+            margin: auto; /* Auto margins (note: auto margins will not work if a width is not set) */
+        }
+        .caption u {
+            font-size: 17px;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bgimg-1">
+        <div class="caption">
+            <form class="login" method="post">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 fw-normal">Log In</h1>
+                <input type="text" id="username" name="username" placeholder="Username">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <input type="submit" value="Log In">
+            </form>
+            <u class="card-text">New User.</u>
+            <button class="btn btn-primary" onclick="location.href='/signup'">Sign Up</button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+

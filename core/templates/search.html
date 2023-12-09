@@ -1,0 +1,113 @@
+{% extends "test.html" %}
+{% block content %}
+
+<style>
+    body {
+        font-family: 'Helvetica Neue', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+    }
+    
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+    
+    .card {
+        width: 18rem;
+        margin: 1rem;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    .card-img-top {
+        width: 100%;
+        height: 15vw;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    .card-body {
+        padding: 2rem;
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #000; /* Changed to white for better visibility */
+    }
+    
+    .card-text {
+        font-size: 1.2rem;
+        color: #000; /* Light grey color for better visibility */
+    }
+</style>
+
+{% if query %}
+    {% if posts %}
+        {% for post in posts %}
+            <div class="card">
+                <a href="/payment"><img src="{{post.Car_image.url}}" class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                    <h5 class="card-title">Model Type: {{ post.model }}</h5>
+                    <p class="card-text">Price: {{ post.price }}TK</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3 style="color: #fff;">No search results found</h3>
+    {% endif %}
+{% endif %}
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% block content %}
+
+{% if query %}
+<div class='container mt-4' style='width: 800px'>
+    <div class='col d-flex justify-content-center'>
+        <div class='row w-100'>
+        {% if posts %}
+            {% for post in posts %}
+                <li class="list-group-item w-100">
+                    <div class='row w-100'>
+                        <div class="col-lg-3">
+                            <a href="/payment"><img src="{{post.Car_image.url}}" class='img object-fit-cover border-0 rounded'  style="height: 100px; width: 100px"></a>
+                         </div>
+                        <div class="col-lg">
+            
+                            <a class = 'text-secondary' href="/payment"> Model Type: {{ post.model }} </a>
+                            <h6>Price: {{ post.price }}TK</h6>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+            <h3>No search results found</h3>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% else %}
+    <h1>Please enter a search query</h1>
+{% endif %}
+
+{% endblock content %} {% endcomment %}
