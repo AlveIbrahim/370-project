@@ -13,6 +13,7 @@ class Customer(AbstractUser):
     
 
 class car_listing(models.Model):
+    cst = models.ForeignKey(Customer, null= True, on_delete = models.CASCADE)
     model=models.CharField(max_length=200)
     num_plate=models.CharField(max_length=7)
     num_of_seat=models.IntegerField(blank = False, null = False, default=0)
@@ -21,6 +22,16 @@ class car_listing(models.Model):
     Car_image=models.ImageField(null=True, blank=True)
     Driver_driving_license=models.ImageField(upload_to='image/', null=True, blank=True)
     clocation=models.CharField(max_length=200, blank = False, null = False, default='')
+    PRIVATE = 'Private Car'
+    MICRO = 'Micro Bus'
+    MINI = 'Mini Bus'
+    TYPE_CHOICES = [
+        (PRIVATE, 'Private Car'),
+        (MICRO, 'Micro Bus'),
+        (MINI, 'Mini Bus'),
+    ]
+    
+    type_of_car=models.CharField(max_length=200, choices=TYPE_CHOICES, blank = False, null = False, default='')
     
 class share(models.Model):
     sharer=models.ForeignKey(Customer, on_delete = models.CASCADE)

@@ -6,7 +6,7 @@
         font-family: 'Helvetica Neue', sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #000;
+        background-color: #fff;
     }
     
     .container {
@@ -48,19 +48,16 @@
     
     .card-text {
         font-size: 1.2rem;
-        color: #fff; /* Light grey color for better visibility */
+        color: #fff; /* white color for better visibility */
     }
 </style>
 
 {% for product in products %}
-    <div class='col-md-4'>
-        <img src='{{ product.pic.url }}' class='w-100' style='max-height:500px'>
-    </div>
     <div class=' d-flex flex-column mb-3 px-4 justify-content-between'>
         <div>
             <div class="alert alert-success" role="alert">
                 <h4>Basic Informations</h4>
-                <img src="{{product.Car_image.url}} " class='img object-fit-cover border-0 rounded' style="height: 100px; width: 100px">
+                <img src="{{product.Car_image.url}} " class='img object-fit-cover border-0 rounded' style="height: 500px; width: 500px">
             </div>
             <div class="container text-center border border-rounded border-2 p-3 my-3">
                 <div class="row gap-0">
@@ -76,17 +73,43 @@
                     <div class="vr p-0" ></div>
                     <div class="col">
                         <span class='fw-medium'> number of seat: </span> {{ product.num_of_seat }}seats
+                        <span class='fw-medium'> type of car: </span> {{ product.type_of_car }}
                     </div>
                 </div>
             </div>  
             <div class="container text-center border border-rounded border-2 p-3 my-3">
                 <div class="row gap-0">
                     <div class="col">
-                        <i class="bi bi-geo-alt-fill"></i>
-                        <span class='fw-medium' > Location: </span><br> {{ product.clocation }}
+                        <span class='fw-medium' > Location: </span> {{ product.clocation }}
+                    </div>
+                </div>
+            </div> 
+            {% if product.has_car == "No" %}
+                <div class="container text-center border border-rounded border-2 p-3 my-3">
+                    <div class="row gap-0">
+                        <div class="col">
+                            <span class="material-symbols-outlined"></span>
+                            <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
+                        </div>
                     </div>
                 </div> 
-                <p>{{ product.has_car }}</p>   
+            {% else %}
+                <div class="container text-center border border-rounded border-2 p-3 my-3">
+                    <div class="row gap-0">
+                        <div class="col">
+                            <span class="material-symbols-outlined"></span>
+                            <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
+                        </div>
+                        <div class="vr p-0"></div>
+                         <img src="{{product.Driver_driving_license.url }} " class='img object-fit-cover border-0 rounded' style="height: 250px; width: 250px">
+                        <div class="vr p-0" ></div>
+                        <div class="col">
+                            <span class='fw-medium'> Driver Licence: </span> {{ product.Drivers_Nid }}
+                        </div>
+                    </div>
+                </div> 
+            {% endif %}
+            
             </div>
         </div>
     </div>

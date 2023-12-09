@@ -47,7 +47,9 @@ def car_Listing(request):
     if request.method == 'POST':
         c_l = cl(request.POST, request.FILES)
         if c_l.is_valid():
-            c_l.save()
+            listing = c_l.save(commit=False)
+            listing.cst = request.user
+            listing.save()
             return redirect('home_after_login')
         else:
             print(c_l.errors.as_data())
@@ -104,7 +106,7 @@ def book(request):
 def search_feature(request):
     if request.method == 'POST':
         search_query = request.POST['search_query']
-        posts = car_listing.objects.filter(clocation=search_query)
+        posts = car_listing.objects.filter(clocation=search_query.lower())
         return render(request, 'search.html', {
             'query':search_query, 
             'posts':posts            
@@ -166,3 +168,31 @@ def rideshare_search(request):
     # else:
     #     share_query = ShareSearch()
     return render(request, 'rideshare.html', context=context)
+
+
+def car_micro(request):
+    car1 = car_listing.objects.filter(type_of_car="Micro Bus")
+    car_show1=list(car1)
+    abc = request.user
+    return render(request, 'car_micro.html',{
+        'products': car_show1,
+        'user': abc
+    })
+
+def car_private(request):
+    car1 = car_listing.objects.filter(type_of_car="Private Car")
+    car_show1=list(car1)
+    abc = request.user
+    return render(request, 'car_micro.html',{
+        'products': car_show1,
+        'user': abc
+    })
+
+def car_mini(request):
+    car1 = car_listing.objects.filter(type_of_car="Mini Bus")
+    car_show1=list(car1)
+    abc = request.user
+    return render(request, 'car_micro.html',{
+        'products': car_show1,
+        'user': abc
+    })

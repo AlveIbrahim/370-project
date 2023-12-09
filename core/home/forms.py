@@ -30,7 +30,8 @@ class cl(ModelForm):
         'has_car',
         'Car_image',
         'Driver_driving_license',
-        'clocation')
+        'clocation',
+        'type_of_car')
 
 class lst(ModelForm):
     

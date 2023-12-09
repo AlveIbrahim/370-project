@@ -52,67 +52,71 @@
     }
 </style>
 
-{% for product in products %}
-    {% if product.cst != user %}
-    <div class=' d-flex flex-column mb-3 px-4 justify-content-between'>
-        <div>
-            <div class="alert alert-success" role="alert">
-                <h4>Basic Informations</h4>
-                <img src="{{product.Car_image.url}} " class='img object-fit-cover border-0 rounded' style="height: 500px; width: 500px">
-            </div>
-            <div class="container text-center border border-rounded border-2 p-3 my-3">
-                <div class="row gap-0">
-                    <div class="col">
-                        <span class="material-symbols-outlined"></span>
-                        <span class='fw-medium'> Model: </span> {{ product.model }}
-                    </div>
-                    <div class="vr p-0"></div>
-                    <div class="col">
-                        <span class="material-symbols-outlined"></span>
-                        <span class='fw-medium'> number plate: </span> {{ product.num_plate }}
-                    </div>
-                    <div class="vr p-0" ></div>
-                    <div class="col">
-                        <span class='fw-medium'> number of seat: </span> {{ product.num_of_seat }}seats
-                    </div>
+{% if products|length != 0%}
+    {% for product in products %}
+        {% if product.cst != user %}
+        <div class=' d-flex flex-column mb-3 px-4 justify-content-between'>
+            <div>
+                <div class="alert alert-success" role="alert">
+                    <h4>Basic Informations</h4>
+                    <img src="{{product.Car_image.url}} " class='img object-fit-cover border-0 rounded' style="height: 500px; width: 500px">
                 </div>
-            </div>  
-            <div class="container text-center border border-rounded border-2 p-3 my-3">
-                <div class="row gap-0">
-                    <div class="col">
-                        <span class='fw-medium' > Location: </span> {{ product.clocation }}
-                    </div>
-                </div>
-            </div> 
-            {% if product.has_car == "No" %}
                 <div class="container text-center border border-rounded border-2 p-3 my-3">
                     <div class="row gap-0">
                         <div class="col">
                             <span class="material-symbols-outlined"></span>
-                            <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
-                        </div>
-                    </div>
-                </div> 
-            {% else %}
-                <div class="container text-center border border-rounded border-2 p-3 my-3">
-                    <div class="row gap-0">
-                        <div class="col">
-                            <span class="material-symbols-outlined"></span>
-                            <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
+                            <span class='fw-medium'> Model: </span> {{ product.model }}
                         </div>
                         <div class="vr p-0"></div>
-                         <img src="{{product.Driver_driving_license.url }} " class='img object-fit-cover border-0 rounded' style="height: 250px; width: 250px">
+                        <div class="col">
+                            <span class="material-symbols-outlined"></span>
+                            <span class='fw-medium'> number plate: </span> {{ product.num_plate }}
+                        </div>
                         <div class="vr p-0" ></div>
                         <div class="col">
-                            <span class='fw-medium'> Driver Licence: </span> {{ product.Drivers_Nid }}
+                            <span class='fw-medium'> number of seat: </span> {{ product.num_of_seat }}seats
+                        </div>
+                    </div>
+                </div>  
+                <div class="container text-center border border-rounded border-2 p-3 my-3">
+                    <div class="row gap-0">
+                        <div class="col">
+                            <span class='fw-medium' > Location: </span> {{ product.clocation }}
                         </div>
                     </div>
                 </div> 
-            {% endif %}
-            
+                {% if product.has_car == "No" %}
+                    <div class="container text-center border border-rounded border-2 p-3 my-3">
+                        <div class="row gap-0">
+                            <div class="col">
+                                <span class="material-symbols-outlined"></span>
+                                <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
+                            </div>
+                        </div>
+                    </div> 
+                {% else %}
+                    <div class="container text-center border border-rounded border-2 p-3 my-3">
+                        <div class="row gap-0">
+                            <div class="col">
+                                <span class="material-symbols-outlined"></span>
+                                <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
+                            </div>
+                            <div class="vr p-0"></div>
+                            <img src="{{product.Driver_driving_license.url }} " class='img object-fit-cover border-0 rounded' style="height: 250px; width: 250px">
+                            <div class="vr p-0" ></div>
+                            <div class="col">
+                                <span class='fw-medium'> Driver Licence: </span> {{ product.Drivers_Nid }}
+                            </div>
+                        </div>
+                    </div> 
+                {% endif %}
+                
+                </div>
             </div>
         </div>
-    </div>
-    {% endif %}
-{% endfor %}     
+        {% endif %}
+    {% endfor %}
+{%else%}
+    <h>No car for you</h>
+{%endif%}
 {% endblock content %}
