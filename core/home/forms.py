@@ -27,7 +27,7 @@ class cl(ModelForm):
         'num_plate', 
         'num_of_seat', 
         'Drivers_Nid',
-        'has_car',
+        'has_driver',
         'Car_image',
         'Driver_driving_license',
         'clocation',
