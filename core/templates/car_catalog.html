@@ -53,7 +53,6 @@
 </style>
 
 {% for product in products %}
-
     <div class=' d-flex flex-column mb-3 px-4 justify-content-between'>
         <div>
             <div class="alert alert-success" role="alert">
@@ -74,6 +73,7 @@
                     <div class="vr p-0" ></div>
                     <div class="col">
                         <span class='fw-medium'> number of seat: </span> {{ product.num_of_seat }}seats
+                        <span class='fw-medium'> type of car: </span> {{ product.type_of_car }}
                     </div>
                 </div>
             </div>  
@@ -215,8 +215,3 @@
                 <p>{{ product.has_car }}</p>   
             </div>
         {% endfor %}     
-<<<<<<< HEAD
-{% endblock content %} {% endcomment %}
-
-=======
->>>>>>> 91511a6d896fbdcdd552c472606b49240147a990
