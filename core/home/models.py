@@ -54,3 +54,11 @@ class Car(models.Model):
 class Payment(models.Model):
     tran_number=models.IntegerField(blank = True, null = True, default=0)
     amount=models.IntegerField(blank = True, null = True, default=0)
+
+class Contact(models.Model):
+    name = models.CharField(max_length=122)
+    user_name= models.CharField(blank = True, null = True,max_length=122)
+    email = models.CharField(blank = True, null = True,max_length=122)
+    phone = models.CharField(blank = True, null = True,max_length=12)
+    feedback = models.TextField()
+    date = models.DateField()
