@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body, html {
@@ -44,26 +44,18 @@
             border-radius: 4px;
         }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="bgimg-1">
         <div class="caption">
-            <form class="login" method="post">
-                {% csrf_token %}
-                <p>The amount is: {{amoun}}</p>   
-                <h1 class="h3 mb-3 fw-normal">Payment</h1>
-                {{Payment}}
-                <input type="submit" value="Submit">
-            </form>
-             
+            {% block content %}
+            <h1>The amount is: {{amoun}}</h1><br>
+            <button class="btn btn-primary" onclick="location.href='/payment'">Proceed to payment</button>
+            {%endblock  %}
         </div>
     </div>
-</body>
-</html>
 
-
-
+	 
     
-
-
-
+  </body>
+</html>

@@ -134,7 +134,24 @@ def search_feature(request):
         return render(request, 'search.html',{})
 
 @login_required()
-def payment(request):
+def payment(request,plate):
+    car = car_listing.objects.get(num_plate=plate)
+    print(car)
+    day=request.GET['days']
+    if car.has_driver=="No":
+        if car.type_of_car=="Private Car":
+            amoun=int(day)*8500
+        elif car.type_of_car=="Micro Bus":
+            amoun=int(day)*11500
+        elif car.type_of_car=="Mini Bus":
+            amoun=int(day)*18500
+    elif car.has_driver=="Yes":
+        if car.type_of_car=="Private Car":
+            amoun=int(day)*10000
+        elif car.type_of_car=="Micro Bus":
+            amoun=int(day)*13000
+        elif car.type_of_car=="Mini Bus":
+            amoun=int(day)*20000         
     if request.method == 'POST':
         pay = payment_rent(request.POST, request.FILES)
         if pay.is_valid():
@@ -144,7 +161,10 @@ def payment(request):
             print(pay.errors.as_data())
     else:
         pay = payment_rent()
-    return render(request, 'payment.html', {'Payment':pay})
+    return render(request, 'payment.html',{
+            'Payment':pay,
+        'amoun':amoun})
+  
 
 @login_required()
 def car_catalog(request):
@@ -226,3 +246,30 @@ def contact(request):
         cont.save()
         return redirect('home_after_login')
     return render(request, 'contact.html')
+
+# def multiply_private(request):
+#     day=request.GET['days']
+#     amoun=int(day)*10000
+#     return render(request, 'show_amount.html', {'amoun':amoun})
+
+# def multiply_micro(request):
+#     day=request.GET['days']
+#     amoun=int(day)*13000
+#     return render(request, 'show_amount.html', {'amoun':amoun})
+
+# def multiply_mini_bus(request):
+#     day=request.GET['days']
+#     amoun=int(day)*20000
+#     return render(request, 'show_amount.html', {'amoun':amoun})
+
+def ren_amount_private(request,plate):
+
+    return render(request, 'ren_amount_private.html',{'plate':plate})
+
+def ren_amount_micro(request,plate):
+
+    return render(request, 'ren_amount_micro.html',{'plate':plate})
+
+def ren_amount_mini_bus(request,plate):
+
+    return render(request, 'ren_amount_mini_bus.html',{'plate':plate})

@@ -21,6 +21,7 @@ class car_listing(models.Model):
     Car_image=models.ImageField(null=True, blank=True)
     Driver_driving_license=models.ImageField(upload_to='image/', null=True, blank=True)
     clocation=models.CharField(max_length=200, blank = False, null = False, default='')
+
     PRIVATE = 'Private Car'
     MICRO = 'Micro Bus'
     MINI = 'Mini Bus'
@@ -35,9 +36,9 @@ class car_listing(models.Model):
         (MICRO, 'Micro Bus'),
         (MINI, 'Mini Bus'),
     ]
-    
     type_of_car=models.CharField(max_length=200, choices=TYPE_CHOICES, blank = False, null = False, default='')
-    has_driver=models.CharField(max_length=7, choices=TYPE_CHOICES2, default='No')
+    has_driver=models.CharField(max_length=7, choices=TYPE_CHOICES2, default='No')    
+
 
     
 class share(models.Model):
