@@ -24,6 +24,7 @@ urlpatterns = [
     path('car_micro', views.car_micro, name='car_micro'),
     path('car_private', views.car_private, name='car_private'),
     path('car_mini', views.car_mini, name='car_mini'),
+    path('contact', views.contact, name='contact'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

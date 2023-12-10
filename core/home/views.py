@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from home.models import car_listing, Customer, Car, Payment, share
+from home.models import car_listing, Customer, Car, Payment, share, Contact
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from .forms import SignupForm, cl, lst, payment_rent, car_share, ShareSearch
@@ -7,6 +7,9 @@ from django.contrib.auth import login as auth_login, logout as auth_logout, auth
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 import random
+from datetime import datetime
+from django.contrib import admin
+from django.urls import path
 
 # Create your views here.
 def index(request):
@@ -20,12 +23,14 @@ def home_after_login(request):
     car_list = list(car)
 
     # Randomly suffling      
-    random.shuffle(car_list)   
-    car = car_listing.objects.all()    
+    random.shuffle(car_list)  
+    lst=[]
+    for i in range(0,3):
+        lst.append(car_list[i])
     return render(
         request, 'after_login.html',
         {
-            'Cars': car_list,
+            'Cars': lst,
             'request': request,            
         })
 
@@ -111,7 +116,7 @@ def book(request):
         bk = lst(request.POST, request.FILES)
         if bk.is_valid():
             bk.save()
-            return redirect('home_after_login')
+            return redirect('payment')
     else:
         bk = lst()
     return render(request, 'rentform.html', {'BK':bk})
@@ -210,3 +215,14 @@ def car_mini(request):
         'products': car_show1,
         'user': abc
     })
+def contact(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        user_name=request.POST.get('user_name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        feedback = request.POST.get('feedback')
+        cont = Contact(name=name, user_name=user_name, email=email, phone=phone,feedback=feedback, date = datetime.today())
+        cont.save()
+        return redirect('home_after_login')
+    return render(request, 'contact.html')
