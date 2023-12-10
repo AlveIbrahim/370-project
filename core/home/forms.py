@@ -37,7 +37,7 @@ class lst(ModelForm):
     
     class Meta:
         model=Car
-        fields=('info', 'customer_licence')
+        fields=('customer_licence',)
 
 
 

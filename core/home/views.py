@@ -20,12 +20,14 @@ def home_after_login(request):
     car_list = list(car)
 
     # Randomly suffling      
-    random.shuffle(car_list)   
-    car = car_listing.objects.all()    
+    random.shuffle(car_list)  
+    lst=[]
+    for i in range(0,3):
+        lst.append(car_list[i])
     return render(
         request, 'after_login.html',
         {
-            'Cars': car_list,
+            'Cars': lst,
             'request': request,            
         })
 
@@ -111,7 +113,7 @@ def book(request):
         bk = lst(request.POST, request.FILES)
         if bk.is_valid():
             bk.save()
-            return redirect('home_after_login')
+            return redirect('payment')
     else:
         bk = lst()
     return render(request, 'rentform.html', {'BK':bk})
