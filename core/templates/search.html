@@ -7,62 +7,192 @@
         margin: 0;
         padding: 0;
         background-color: #000;
+        color:#fff;
+    }
+    
+    .d-flex {
+        display: flex;
+    }
+    
+    .flex-column {
+        flex-direction: column;
+    }
+    
+    .mb-3 {
+        margin-bottom: 1rem;
+    }
+    
+    .px-4 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    
+    .justify-content-between {
+        justify-content: space-between;
+    }
+    
+    .alert {
+        position: relative;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+    
+    .alert-success {
+        color: #0c5460;
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
     }
     
     .container {
-        width: 80%;
-        margin: auto;
-        overflow: hidden;
-    }
-    
-    .card {
-        width: 18rem;
-        margin: 1rem;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        transition: 0.3s;
-        background-color: #fff;
-        border-radius: 10px;
-    }
-    
-    .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    }
-    
-    .card-img-top {
         width: 100%;
-        height: 15vw;
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .text-center {
+        text-align: center !important;
+    }
+    
+    .border {
+        border: 1px solid #dee2e6 !important;
+    }
+    
+    .border-rounded {
+        border-radius: 0.25rem !important;
+    }
+    
+    .border-2 {
+        border-width: 2px !important;
+    }
+    
+    .p-3 {
+        padding: 1rem !important;
+    }
+    
+    .my-3 {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -0.75rem;
+        margin-left: -0.75rem;
+    }
+    
+    .gap-0 {
+        gap: 0;
+    }
+    
+    .col {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+    
+    .fw-medium {
+        font-weight: 500 !important;
+        color:#fff;
+    }
+    
+    .vr {
+        width: 0;
+        height: auto;
+        border-left: 1px solid #dee2e6;
+    }
+    
+    .p-0 {
+        padding: 0 !important;
+    }
+    
+    .img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .object-fit-cover {
         object-fit: cover;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
     }
     
-    .card-body {
-        padding: 2rem;
+    .border-0 {
+        border: 0 !important;
     }
     
-    .card-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #000; /* Changed to white for better visibility */
-    }
-    
-    .card-text {
-        font-size: 1.2rem;
-        color: #000; /* Light grey color for better visibility */
+    .rounded {
+        border-radius: 0.25rem !important;
     }
 </style>
 
+
 {% if query %}
     {% if posts %}
-        {% for post in posts %}
-            <div class="card">
-                <a href="/payment"><img src="{{post.Car_image.url}}" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">Model Type: {{ post.model }}</h5>
-                    <p class="card-text">Price: {{ post.price }}TK</p>
-                </div>
+    {% for product in posts %}
+    <div class=' d-flex flex-column mb-3 px-4 justify-content-between'>
+        <div>
+            <div class="alert alert-success" role="alert">
+                <h4>Basic Informations</h4>
+                <img src="{{product.Car_image.url}} " class='img object-fit-cover border-0 rounded' style="height: 500px; width: 500px">
             </div>
-        {% endfor %}
+            <div class="container text-center border border-rounded border-2 p-3 my-3">
+                <div class="row gap-0">
+                    <div class="col">
+                        <span class="material-symbols-outlined"></span>
+                        <span class='fw-medium'> Model: </span> {{ product.model }}
+                    </div>
+                    <div class="vr p-0"></div>
+                    <div class="col">
+                        <span class="material-symbols-outlined"></span>
+                        <span class='fw-medium'> number plate: </span> {{ product.num_plate }}
+                    </div>
+                    <div class="vr p-0" ></div>
+                    <div class="col">
+                        <span class='fw-medium'> number of seat: </span> {{ product.num_of_seat }}seats
+                        <span class='fw-medium'> type of car: </span> {{ product.type_of_car }}
+                    </div>
+                </div>
+            </div>  
+            <div class="container text-center border border-rounded border-2 p-3 my-3">
+                <div class="row gap-0">
+                    <div class="col">
+                        <span class='fw-medium' > Location: </span> {{ product.clocation }}
+                    </div>
+                </div>
+            </div> 
+            {% if product.has_driver == "No" %}
+                <div class="container text-center border border-rounded border-2 p-3 my-3">
+                    <div class="row gap-0">
+                        <div class="col">
+                            <span class="material-symbols-outlined"></span>
+                            <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
+                        </div>
+                    </div>
+                </div> 
+            {% else %}
+                <div class="container text-center border border-rounded border-2 p-3 my-3">
+                    <div class="row gap-0">
+                        <div class="col">
+                            <span class="material-symbols-outlined"></span>
+                            <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
+                        </div>
+                        <div class="vr p-0"></div>
+                         <img src="{{product.Driver_driving_license.url }} " class='img object-fit-cover border-0 rounded' style="height: 250px; width: 250px">
+                        <div class="vr p-0" ></div>
+                        <div class="col">
+                            <span class='fw-medium'> Driver Licence: </span> {{ product.Drivers_Nid }}
+                        </div>
+                    </div>
+                </div> 
+            {% endif %}
+            
+            </div>
+        </div>
+    </div>
+{% endfor %}
     {% else %}
         <h3 style="color: #fff;">No search results found</h3>
     {% endif %}

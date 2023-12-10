@@ -44,10 +44,6 @@
                 </ul>
               </li>
               
-              <li class="nav-item">
-                
-                <a class="nav-link" href="/car_catalog">car catalog</a>
-              </li>
             </ul>
             <form class="d-flex" role="search" method="POST" action="{% url 'search' %}">
               {% csrf_token %}
@@ -113,164 +109,70 @@
     </div> 
 
 
-    <b><h1 align='center'>Rent from our wide range of cars</h1></b>
 
-    <div class="album py-5 bg-body-tertiary">
-      <div class="container">
-  
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href='/rant'>
-                      <button type="button" class="btn btn-sm btn-outline-secondary" >Book</button>
-                    </a>
-                    
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
+    <h2>Popular Cars</h2>
+    {% for product in Cars %}
+    <div class=' d-flex flex-column mb-3 px-4 justify-content-between'>
+        <div>
+            <div class="alert alert-success" role="alert">
+                <h4>Basic Informations</h4>
+                <img src="{{product.Car_image.url}} " class='img object-fit-cover border-0 rounded' style="height: 500px; width: 500px">
             </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href='/rant'>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
-                    </a>
-                    
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
+            <div class="container text-center border border-rounded border-2 p-3 my-3">
+                <div class="row gap-0">
+                    <div class="col">
+                        <span class="material-symbols-outlined"></span>
+                        <span class='fw-medium'> Model: </span> {{ product.model }}
+                    </div>
+                    <div class="vr p-0"></div>
+                    <div class="col">
+                        <span class="material-symbols-outlined"></span>
+                        <span class='fw-medium'> number plate: </span> {{ product.num_plate }}
+                    </div>
+                    <div class="vr p-0" ></div>
+                    <div class="col">
+                        <span class='fw-medium'> number of seat: </span> {{ product.num_of_seat }}seats
+                        <span class='fw-medium'> type of car: </span> {{ product.type_of_car }}
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href='/rant'>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
-                    </a>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
+            </div>  
+            <div class="container text-center border border-rounded border-2 p-3 my-3">
+                <div class="row gap-0">
+                    <div class="col">
+                        <span class='fw-medium' > Location: </span> {{ product.clocation }}
+                    </div>
                 </div>
-              </div>
+            </div> 
+            {% if product.has_driver == "No" %}
+                <div class="container text-center border border-rounded border-2 p-3 my-3">
+                    <div class="row gap-0">
+                        <div class="col">
+                            <span class="material-symbols-outlined"></span>
+                            <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
+                        </div>
+                    </div>
+                </div> 
+            {% else %}
+                <div class="container text-center border border-rounded border-2 p-3 my-3">
+                    <div class="row gap-0">
+                        <div class="col">
+                            <span class="material-symbols-outlined"></span>
+                            <span class='fw-medium'> Driver Provided: </span> {{ product.has_car }}
+                        </div>
+                        <div class="vr p-0"></div>
+                         <img src="{{product.Driver_driving_license.url }} " class='img object-fit-cover border-0 rounded' style="height: 250px; width: 250px">
+                        <div class="vr p-0" ></div>
+                        <div class="col">
+                            <span class='fw-medium'> Driver Licence: </span> {{ product.Drivers_Nid }}
+                        </div>
+                    </div>
+                </div> 
+            {% endif %}
+            
             </div>
-          </div>
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href='/rant'>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
-                    </a>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href='/rant'>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
-                    </a>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href='/rant'>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
-                    </a>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href='/rant'>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
-                    </a>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href='/rant'>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
-                    </a>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href='/rant'>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Book</button>
-                    </a>
-                  </div>
-                  <small class="text-body-secondary">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-
+{% endfor %}   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>

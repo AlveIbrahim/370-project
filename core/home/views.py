@@ -6,6 +6,7 @@ from .forms import SignupForm, cl, lst, payment_rent, car_share, ShareSearch
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+import random
 
 # Create your views here.
 def index(request):
@@ -14,7 +15,20 @@ def index(request):
 
 @login_required()
 def home_after_login(request):
-    return render(request,'after_login.html')
+    car = car_listing.objects.all()                                                  
+
+    car_list = list(car)
+
+    # Randomly suffling      
+    random.shuffle(car_list)   
+    car = car_listing.objects.all()    
+    return render(
+        request, 'after_login.html',
+        {
+            'Cars': car_list,
+            'request': request,            
+        })
+
 
 @login_required()
 def rs(request):
