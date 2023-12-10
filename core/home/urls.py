@@ -17,7 +17,7 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('book', views.book, name='book'),
     path('search', views.search_feature, name='search'),
-    path('payment', views.payment, name='payment'),
+    path('payment/<str:plate>', views.payment, name='payment'),
     path('car_catalog', views.car_catalog, name='car_catalog'),
     path('share_form', views.share_car, name='share_form'),
     path('share_search', views.rideshare_search, name='share_search'),
@@ -25,6 +25,12 @@ urlpatterns = [
     path('car_private', views.car_private, name='car_private'),
     path('car_mini', views.car_mini, name='car_mini'),
     path('contact', views.contact, name='contact'),
+    # path('multiply_private', views.multiply_private, name='multiply_private'),
+    # path('multiply_micro', views.multiply_micro, name='multiply_micro'),
+    # path('multiply_mini_bus', views.multiply_mini_bus, name='multiply_mini_bus'),
+    path('ren_amount_private/<str:plate>', views.ren_amount_private, name='ren_amount_private'),
+    path('ren_amount_micro/<str:plate>', views.ren_amount_micro, name='ren_amount_micro'),
+    path('ren_amount_mini_bus/<str:plate>', views.ren_amount_mini_bus, name='ren_amount_mini_bus'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
