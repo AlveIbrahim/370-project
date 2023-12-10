@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: "Lato", sans-serif;
+            font-size: 15px;
+            color: #000;
+            background-color: #f4f4f4;
+        }
+        .bgimg-1 {
+            background-image: url("/static/11.jpeg");
+            height: 100%;
+            background-size: cover;
+        }
+        .caption {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+        }
+        .caption form.login {
+            font-size: 17px;
+            letter-spacing: 2px;
+            background-color: rgba(0,0,0,0.6);
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .caption u {
+            font-size: 17px;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bgimg-1">
+        <div class="caption">
+            
+            <div class="container mb-3 py-4">
+                <h1 class="text-center">Contact Us</h1>
+                <form method="post" action="/contact">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user_name">User Name</label>
+                        <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Enter your user name">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Number">
+                    </div>      
+                    
+                    <div class="form-group">
+                        <label for="feedback">Tell me about what you want to contact me for...</label>
+                        <textarea class="form-control" id="feedback" rows="3" name="feedback"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+            
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
