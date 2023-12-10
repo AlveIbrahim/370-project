@@ -48,7 +48,6 @@ class share(models.Model):
     seats = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(15)])
 
 class Car(models.Model):
-    info=models.ForeignKey(car_listing, on_delete = models.CASCADE)
     customer_licence=models.ImageField(upload_to='cimage/', null=True, blank=True)
 
 
