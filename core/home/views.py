@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from home.models import car_listing, Customer, Payment, share, Contact
+from home.models import car_listing, Customer, Payment, share, Contact, Notification
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from .forms import SignupForm, cl, payment_rent, car_share, ShareSearch
@@ -39,12 +39,18 @@ def home_after_login(request):
 def rs(request):
     if request.method == 'POST':
         share_query = ShareSearch(request.POST)
-        sharer = request.POST.get('sharer')
-        print(sharer)
+        sharing_customer = request.POST.get('sharer')
+        sharer = Customer.objects.get(username=sharing_customer)
+        current_user = request.user
+        pickup = request.POST.get('location')
+        drop = request.POST.get('destination')
+        if sharing_customer!=None:
+            notif_text = f'{current_user} would like to share your ride (Location={pickup}, Destination={drop})'
+            notif = Notification(sender=current_user, reciever=sharer, message=notif_text)
+            notif.save()
         if share_query.is_valid():
             cars = share.objects.filter(location=share_query.cleaned_data["location"])
             destination = share_query.cleaned_data["destination"]
-            current_user = request.user
             return render(request, 'rideshare.html', {
                 'Share_Search':ShareSearch(),
                 'share_query':share_query, 
@@ -239,7 +245,6 @@ def contact(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         feedback = request.POST.get('feedback')
-        print(feedback)
         cont = Contact(name=name, user_name=user_name, email=email, phone=phone,feedback=feedback, date = datetime.today())
         cont.save()
         return redirect('home_after_login')

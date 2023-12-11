@@ -56,8 +56,8 @@ class car_share(ModelForm):
         model = share
         fields = ('location','destination','type','seats')
 
-class share_book(ModelForm):
-    class Meta:
-        model = Notification
-        fields = ()
+# class share_book(ModelForm):
+#     class Meta:
+#         model = Notification
+#         fields = ()
   
