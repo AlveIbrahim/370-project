@@ -71,4 +71,4 @@ class Notification(models.Model):
     reciever = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='reciever')
     message = models.TextField()
     timestamp = models.DateTimeField(auto_now=True)
-    read = models.BooleanField(default=False)
+    notif_type = models.TextField(blank=True, null=True)

@@ -46,7 +46,7 @@ def rs(request):
         if sharing_customer!=None:
             sharer = Customer.objects.get(username=sharing_customer)
             notif_text = f'{current_user} would like to share your ride (Location={pickup}, Destination={drop})'
-            notif = Notification(sender=current_user, reciever=sharer, message=notif_text)
+            notif = Notification(sender=current_user, reciever=sharer, message=notif_text, notif_type='share_req')
             notif.save()
         if share_query.is_valid():
             cars = share.objects.filter(location=share_query.cleaned_data["location"])
@@ -279,5 +279,14 @@ def context_processor(request):
 
 @login_required
 def notification_view(request):
-    notification = Notification.objects.filter(reciever=request.user)
-    return render(request, 'notification.html', {'test': notification})
+    if request.method=='POST':
+        notif_id = request.POST.get("notif_id")
+        selected_notif = Notification.objects.get(id=notif_id)
+        if 'delete' in request.POST:
+            selected_notif.delete()
+        elif 'accept' in request.POST:
+            phone_num =  request.user.phn
+            print(phone_num)
+            notif = Notification(sender=request.user, reciever=selected_notif.sender, message=f'Your request has been accepted, please contact the ride sharer. Phone: {phone_num}', notif_type='accepted')
+            notif.save()
+    return render(request, 'notification.html')

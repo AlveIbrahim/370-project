@@ -7,17 +7,17 @@
             <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
               <span class="fs-4" >Ride Share</span>
             </a>
-          </div>
-            {% comment %}
-            here is the button to take you to the ride share car listing form, make this look nice Isfar and also search bar
-            {% endcomment %}
             <button onclick="location.href='share_form'" id="share_form">Add your car to the list</button>
-            <form class="d-flex" role="search" method="post">
+            <br>
+          </div>
+            <div>
+            <form role="search" method="post">
               {% csrf_token %}
               {{ Share_Search.as_p }}
               <input type="submit" value="Share Search">
            </form>
           </div>
+
 {% if share_query %}
   {% if cars %}
     {% for car in cars %}
@@ -51,6 +51,7 @@
               </div>
             </form>
         </div>
+        <br>
         {% endif %}
         {% endif %}
       {% endfor %}
