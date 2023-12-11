@@ -10,6 +10,7 @@ import random
 from datetime import datetime
 from django.contrib import admin
 from django.urls import path
+from django.utils import timezone
 
 # Create your views here.
 def index(request):
@@ -38,15 +39,17 @@ def home_after_login(request):
 @login_required()
 def rs(request):
     if request.method == 'POST':
+        print('test')
         share_query = ShareSearch(request.POST)
         sharing_customer = request.POST.get('sharer')
         current_user = request.user
         pickup = request.POST.get('location')
         drop = request.POST.get('destination')
+        seat_num = request.POST.get('seats')
         if sharing_customer!=None:
             sharer = Customer.objects.get(username=sharing_customer)
             notif_text = f'{current_user} would like to share your ride (Location={pickup}, Destination={drop})'
-            notif = Notification(sender=current_user, reciever=sharer, message=notif_text, notif_type='share_req')
+            notif = Notification(sender=current_user, reciever=sharer, message=notif_text, notif_type='share_req', car=seat_num)
             notif.save()
         if share_query.is_valid():
             cars = share.objects.filter(location=share_query.cleaned_data["location"])
@@ -283,10 +286,37 @@ def notification_view(request):
         notif_id = request.POST.get("notif_id")
         selected_notif = Notification.objects.get(id=notif_id)
         if 'delete' in request.POST:
+            notif = Notification(sender=request.user, reciever=selected_notif.sender, message=f'Your request has been declined.', notif_type='declined')
+            notif.save()
             selected_notif.delete()
         elif 'accept' in request.POST:
             phone_num =  request.user.phn
-            print(phone_num)
             notif = Notification(sender=request.user, reciever=selected_notif.sender, message=f'Your request has been accepted, please contact the ride sharer. Phone: {phone_num}', notif_type='accepted')
             notif.save()
+            selected_notif.delete()
     return render(request, 'notification.html')
+
+def start_share(request):
+    hidden = Notification.objects.filter(notif_type='hidden')
+    count = len(hidden)
+    print(count)
+    if request.method=='POST':
+        if count==1:
+            hidden_object = Notification.objects.get(notif_type='hidden')
+            start_time = hidden_object.timestamp
+            total_time = timezone.now() - start_time
+            hidden_object.delete()
+            return render(request, 'start_share.html', {'amount':(total_time.total_seconds())*0.3})
+        if count==0:
+            hidden_notif = Notification(sender=request.user, reciever=request.user, notif_type='hidden')
+            hidden_notif.save()
+            return render(request, 'start_share.html', {'stop': 'stop'})
+        else:
+            hidden_notif = Notification(sender=request.user, reciever=request.user, notif_type='hidden')
+            hidden_notif.save()
+            return render(request, 'start_share.html', {'stop': 'stop'})
+    
+    else:
+        if count==1:
+            return render(request, 'start_share.html', {'stop': 'stop'})
+        return render(request, 'start_share.html')

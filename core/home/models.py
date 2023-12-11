@@ -69,6 +69,7 @@ class Contact(models.Model):
 class Notification(models.Model):
     sender = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='sender')
     reciever = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='reciever')
-    message = models.TextField()
+    car = models.IntegerField(null = True, blank=True)
+    message = models.TextField(blank = True)
     timestamp = models.DateTimeField(auto_now=True)
     notif_type = models.TextField(blank=True, null=True)

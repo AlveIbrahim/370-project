@@ -29,6 +29,7 @@ urlpatterns = [
     # path('multiply_mini_bus', views.multiply_mini_bus, name='multiply_mini_bus'),
     path('ren_amount_private/<str:plate>', views.ren_amount_private, name='ren_amount_private'),
     path('notification', views.notification_view, name='notification'),
+    path('start_share', views.start_share, name='start_share'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

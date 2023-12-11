@@ -20,7 +20,7 @@
         </div>
     </form>
 </div>
-{% else %}
+{% elif notifications.notif_type != 'hidden' %}
 <div class="regular_text">
     <form method="post">
     <h4>{{notifications.message}}</h4>
