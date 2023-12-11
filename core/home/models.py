@@ -40,7 +40,6 @@ class car_listing(models.Model):
     type_of_car=models.CharField(max_length=200, choices=TYPE_CHOICES, blank = False, null = False, default='')
     has_driver=models.CharField(max_length=7, choices=TYPE_CHOICES2, default='No')    
 
-
     
 class share(models.Model):
     sharer=models.ForeignKey(Customer, on_delete = models.CASCADE)
@@ -65,3 +64,11 @@ class Contact(models.Model):
     phone = models.CharField(blank = True, null = True,max_length=12)
     feedback = models.TextField()
     date = models.DateField()
+
+class Notification(models.Model):
+    sender = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='sender')
+    reciever = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='reciever')
+    car = models.IntegerField(null = True, blank=True)
+    message = models.TextField(blank = True)
+    timestamp = models.DateTimeField(auto_now=True)
+    notif_type = models.TextField(blank=True, null=True)

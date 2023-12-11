@@ -13,6 +13,19 @@
       .navbar-custom .nav-link {
         color: white !important;
       }
+
+      .emphasis {
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        background-color: gray;
+      }
+
+      .regular_text {
+        color: black;
+        background-color: gray;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -46,6 +59,15 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
               </li>
+              {% if notif_num != 0 %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/notification">New Notification</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/notification">Notification</a>
+              </li>
+              {% endif %}
             </ul>
             <form class="d-flex" role="search" method="POST" action="{% url 'search' %}">
               {% csrf_token %}

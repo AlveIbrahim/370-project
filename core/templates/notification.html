@@ -1,0 +1,40 @@
+{%extends 'test.html' %}
+{% block content %}
+
+{% if notif_num == 0 %}
+<div class="emphasis">
+    There are no notifications.
+</div>
+{% else %}
+{% for notifications in notification %}
+{% if notifications.notif_type == 'share_req' %}
+<div class="regular_text">
+    <form method="post">
+    <h4>{{notifications.message}}</h4>
+    <h5>{{notifications.timestamp}}</h5>
+    <textarea readonly hidden name="notif_id">{{notifications.id}}</textarea>
+    <br>
+        {% csrf_token %}
+        <div><button name='accept' style="background-color: green; color: white;" type="submit">Accept</button> 
+            <button name='decline' style="background-color: red; color: white;" type="submit">Decline</button>
+        </div>
+    </form>
+</div>
+{% elif notifications.notif_type != 'hidden' %}
+<div class="regular_text">
+    <form method="post">
+    <h4>{{notifications.message}}</h4>
+    <h5>{{notifications.timestamp}}</h5>
+    <textarea readonly hidden name="notif_id">{{notifications.id}}</textarea>
+    <br>
+        {% csrf_token %}
+            <button name='delete' style="background-color: red; color: white;" type="submit">Delete</button>
+        </div>
+    </form>
+</div>
+{% endif %}
+<br>
+<br>
+{% endfor %}
+{% endif %}
+{% endblock content %}
