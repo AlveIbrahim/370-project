@@ -40,11 +40,11 @@ def rs(request):
     if request.method == 'POST':
         share_query = ShareSearch(request.POST)
         sharing_customer = request.POST.get('sharer')
-        sharer = Customer.objects.get(username=sharing_customer)
         current_user = request.user
         pickup = request.POST.get('location')
         drop = request.POST.get('destination')
         if sharing_customer!=None:
+            sharer = Customer.objects.get(username=sharing_customer)
             notif_text = f'{current_user} would like to share your ride (Location={pickup}, Destination={drop})'
             notif = Notification(sender=current_user, reciever=sharer, message=notif_text)
             notif.save()
@@ -268,3 +268,16 @@ def contact(request):
 def ren_amount_private(request,plate):
 
     return render(request, 'ren_amount_private.html',{'plate':plate})
+
+def context_processor(request):
+    if request.user.is_authenticated:
+        notification = Notification.objects.filter(reciever=request.user)
+        notif_num = len(notification)
+        return {'notification': notification, 'notif_num': notif_num}
+    else:
+        return {'notification': None, 'notif_num': None}
+
+@login_required
+def notification_view(request):
+    notification = Notification.objects.filter(reciever=request.user)
+    return render(request, 'notification.html', {'test': notification})

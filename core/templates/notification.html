@@ -1,0 +1,15 @@
+{%extends 'test.html' %}
+{% block content %}
+
+{% if notif_num == 0 %}
+<div class="emphasis">
+    There are no notifications.
+</div>
+{% else %}
+{% for notifications in notification %}
+<div class="regular_text">
+    <p>{{notifications.message}}</p>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock content %}

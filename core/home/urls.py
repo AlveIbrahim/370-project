@@ -28,6 +28,7 @@ urlpatterns = [
     # path('multiply_micro', views.multiply_micro, name='multiply_micro'),
     # path('multiply_mini_bus', views.multiply_mini_bus, name='multiply_mini_bus'),
     path('ren_amount_private/<str:plate>', views.ren_amount_private, name='ren_amount_private'),
+    path('notification', views.notification_view, name='notification'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
