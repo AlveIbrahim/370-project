@@ -20,6 +20,12 @@
                 <p class='card-text'><small class='text-muted'> Location: </small> {{ product.clocation }}</p>
                 {% if product.has_driver == "No" %}
                     <p class='card-text'><small class='text-muted'> Driver Provided: </small> {{ product.has_driver }}</p>
+                    <form class="row g-3">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Customer Driving Licence</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                    </form>
                     <button class="btn btn-primary" onclick="location.href='/ren_amount_private/{{product.num_plate}}'" style="background-color: black; color: white;">Book</button>
                 {% else %}
                     <p class='card-text'><small class='text-muted'> Driver Provided: </small> {{ product.has_driver }}</p>

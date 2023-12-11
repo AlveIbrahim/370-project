@@ -39,7 +39,6 @@ def home_after_login(request):
 @login_required()
 def rs(request):
     if request.method == 'POST':
-        print('test')
         share_query = ShareSearch(request.POST)
         sharing_customer = request.POST.get('sharer')
         current_user = request.user
@@ -149,9 +148,9 @@ def payment(request,plate):
         if car.type_of_car=="Private Car":
             amoun=int(day)*8500
         elif car.type_of_car=="Micro Bus":
-            amoun=int(day)*11500
+            amoun=int(day)*11000
         elif car.type_of_car=="Mini Bus":
-            amoun=int(day)*18500
+            amoun=int(day)*17500
     elif car.has_driver=="Yes":
         if car.type_of_car=="Private Car":
             amoun=int(day)*10000
