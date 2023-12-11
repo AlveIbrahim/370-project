@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Customer, car_listing, Payment, share
+from .models import Customer, car_listing, Payment, share, Notification
 
 
 class SignupForm(UserCreationForm):
@@ -55,4 +55,9 @@ class car_share(ModelForm):
     class Meta:
         model = share
         fields = ('location','destination','type','seats')
+
+# class share_book(ModelForm):
+#     class Meta:
+#         model = Notification
+#         fields = ()
   

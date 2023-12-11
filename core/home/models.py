@@ -65,3 +65,11 @@ class Contact(models.Model):
     phone = models.CharField(blank = True, null = True,max_length=12)
     feedback = models.TextField()
     date = models.DateField()
+
+class Notification(models.Model):
+    sender = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='sender')
+    reciever = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='reciever')
+    car = models.IntegerField(null = True, blank=True)
+    message = models.TextField(blank = True)
+    timestamp = models.DateTimeField(auto_now=True)
+    notif_type = models.TextField(blank=True, null=True)
