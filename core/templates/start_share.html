@@ -1,0 +1,18 @@
+{%extends 'test.html' %}
+{% block content %}
+
+<form method="post">
+{%csrf_token%}
+{% if amount %}
+<div class="emphasis">
+    <p>Amount to pay: {{amount}}</p>
+    <br>
+<button name='start' style="background-color: green; color: white;" type="submit">Start Sharing</button> 
+{% elif stop %}
+<button name='stop' style="background-color: red; color: white;" type="submit">Stop Sharing</button> 
+{% else %}
+<button name='start' style="background-color: green; color: white;" type="submit">Start Sharing</button> 
+</div>
+</form>
+{%endif%}
+{% endblock content %}
