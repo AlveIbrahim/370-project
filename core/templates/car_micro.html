@@ -4,6 +4,7 @@
 <body style='background-color: #000'>
 {% if products|length != 0%}
 {% for product in products %}
+{% if abc != product.cst %}
 <div class='card mb-3 px-4 justify-content-between' style='background-color: orange;'>
     <div class='row no-gutters'>
         <div class='col-md-4'>
@@ -20,6 +21,11 @@
                 <p class='card-text'><small class='text-muted'> Location: </small> {{ product.clocation }}</p>
                 {% if product.has_driver == "No" %}
                     <p class='card-text'><small class='text-muted'> Driver Provided: </small> {{ product.has_driver }}</p>
+                    <form method="post" action="/car_Listing">
+                        {% csrf_token %}
+                        <input class="form-control" type="file" id="Driver_driving_license" name='Driver_driving_license'>
+                    </form>
+
                     <button class="btn btn-primary" onclick="location.href='/ren_amount_private/{{product.num_plate}}'" style="background-color: black; color: white;">Book</button>
                 {% else %}
                     <p class='card-text'><small class='text-muted'> Driver Provided: </small> {{ product.has_driver }}</p>
@@ -33,6 +39,7 @@
         </div>
     </div>
 </div>
+{%endif%}
 {% endfor %}
 {%else%}
     <h>No car for you</h>

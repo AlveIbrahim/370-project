@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, HttpResponse
-from home.models import car_listing, Customer, Car, Payment, share, Contact
+from home.models import car_listing, Customer, Payment, share, Contact
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .forms import SignupForm, cl, lst, payment_rent, car_share, ShareSearch
+from .forms import SignupForm, cl, payment_rent, car_share, ShareSearch
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -64,6 +64,10 @@ def rent(request):
 @login_required()
 def car_Listing(request):
     if request.method == 'POST':
+        # form=request.POST
+        # if form.get('customer_licence'):
+        #     customer_licence = request.POST.get('customer_licence')
+        #     customer_licence.save()
         c_l = cl(request.POST, request.FILES)
         if c_l.is_valid():
             listing = c_l.save(commit=False)
@@ -110,16 +114,7 @@ def logout(request):
     messages.warning(request, 'You were logged out')
     return redirect('home')
 
-@login_required()
-def book(request):
-    if request.method == 'POST':
-        bk = lst(request.POST, request.FILES)
-        if bk.is_valid():
-            bk.save()
-            return redirect('payment')
-    else:
-        bk = lst()
-    return render(request, 'rentform.html', {'BK':bk})
+
 
 @login_required()
 def search_feature(request):

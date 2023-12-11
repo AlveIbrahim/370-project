@@ -131,12 +131,14 @@
                     <p class='card-text'><small class='text-muted'> Location: </small> {{ product.clocation }}</p>
                     {% if product.has_driver == "No" %}
                         <p class='card-text'><small class='text-muted'> Driver Provided: </small> {{ product.has_driver }}</p>
+                        <button class="btn btn-primary" onclick="location.href='/ren_amount_private/{{product.num_plate}}'" style="background-color: black; color: white;">Book</button>
                     {% else %}
                         <p class='card-text'><small class='text-muted'> Driver Provided: </small> {{ product.has_driver }}</p>
                         <p class='card-text'><small class='text-muted'> Driver Licence: </small>
                           <img src="{{product.Driver_driving_license.url }}" class='img object-fit-cover border-0 rounded' style="height: 250px; width: 250px">
                         </p>
                         <p class='card-text'><small class='text-muted'> Driver Licence: </small> {{ product.Drivers_Nid }}</p>
+                        <button class="btn btn-primary" onclick="location.href='/ren_amount_private/{{product.num_plate}}'" style="background-color: black; color: white;">Book</button>
                     {% endif %}
                 </div>
             </div>

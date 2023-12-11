@@ -15,7 +15,6 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
-    path('book', views.book, name='book'),
     path('search', views.search_feature, name='search'),
     path('payment/<str:plate>', views.payment, name='payment'),
     path('car_catalog', views.car_catalog, name='car_catalog'),

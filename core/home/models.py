@@ -20,6 +20,7 @@ class car_listing(models.Model):
     Drivers_Nid=models.IntegerField(blank = True, null = True, default=0)
     Car_image=models.ImageField(null=True, blank=True)
     Driver_driving_license=models.ImageField(upload_to='image/', null=True, blank=True)
+    customer_licence=models.ImageField(upload_to='cimage/', null=True, blank=True)
     clocation=models.CharField(max_length=200, blank = False, null = False, default='')
 
     PRIVATE = 'Private Car'
@@ -48,8 +49,8 @@ class share(models.Model):
     type = models.CharField(null=False, max_length=100, default='')
     seats = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(15)])
 
-class Car(models.Model):
-    customer_licence=models.ImageField(upload_to='cimage/', null=True, blank=True)
+# class Car(models.Model):
+#     customer_licence=models.ImageField(upload_to='cimage/', null=True, blank=True)
 
 
 class Payment(models.Model):
