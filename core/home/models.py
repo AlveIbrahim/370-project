@@ -55,6 +55,7 @@ class Car(models.Model):
 class Payment(models.Model):
     tran_number=models.IntegerField(blank = True, null = True, default=0)
     amount=models.IntegerField(blank = True, null = True, default=0)
+    inf=models.ForeignKey(Customer, null= True, on_delete=models.CASCADE)
 
 class Contact(models.Model):
     name = models.CharField(max_length=122)
