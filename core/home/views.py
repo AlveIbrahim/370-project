@@ -136,8 +136,8 @@ def search_feature(request):
 @login_required()
 def payment(request,plate):
     car = car_listing.objects.get(num_plate=plate)
-    print(car)
     day=request.GET['days']
+    owner=request.user
     if car.has_driver=="No":
         if car.type_of_car=="Private Car":
             amoun=int(day)*8500
@@ -163,7 +163,7 @@ def payment(request,plate):
         pay = payment_rent()
     return render(request, 'payment.html',{
             'Payment':pay,
-        'amoun':amoun})
+        'amoun':amoun, 'owner':owner})
   
 
 @login_required()
@@ -265,11 +265,3 @@ def contact(request):
 def ren_amount_private(request,plate):
 
     return render(request, 'ren_amount_private.html',{'plate':plate})
-
-def ren_amount_micro(request,plate):
-
-    return render(request, 'ren_amount_micro.html',{'plate':plate})
-
-def ren_amount_mini_bus(request,plate):
-
-    return render(request, 'ren_amount_mini_bus.html',{'plate':plate})
