@@ -25,7 +25,7 @@ def home_after_login(request):
     # Randomly suffling      
     random.shuffle(car_list)  
     lst=[]
-    for i in range(0,3):
+    for i in range(0,2):
         lst.append(car_list[i])
     return render(
         request, 'after_login.html',
@@ -120,7 +120,8 @@ def logout(request):
 def search_feature(request):
     if request.method == 'POST':
         search_query = request.POST['search_query']
-        posts = car_listing.objects.filter(clocation=search_query.lower())
+        posts = car_listing.objects.filter(clocation__contains=search_query.lower())
+        print(search_query)
         return render(request, 'search.html', {
             'query':search_query, 
             'posts':posts            
@@ -241,7 +242,7 @@ def contact(request):
         cont.save()
         return redirect('home_after_login')
     return render(request, 'contact.html')
-    
+
 def ren_amount_private(request,plate):
 
     return render(request, 'ren_amount_private.html',{'plate':plate})
