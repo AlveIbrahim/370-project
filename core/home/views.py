@@ -26,8 +26,14 @@ def home_after_login(request):
     # Randomly suffling      
     random.shuffle(car_list)  
     lst=[]
-    for i in range(0,2):
-        lst.append(car_list[i])
+    j=0
+    for i in range(len(car_list)):
+        if j==3:
+            break
+        else:
+            lst.append(car_list[i])
+            j+=1
+
     return render(
         request, 'after_login.html',
         {
@@ -176,9 +182,20 @@ def payment(request,plate):
 def car_catalog(request):
     car = car_listing.objects.all()
     car_show=list(car)
-
+    abc = request.user
+    if request.method=="POST":
+        cr=request.POST.get('adad')
+        kl=car_listing.objects.get(id=cr)
+        if 'ondelete' in request.POST:
+            kl.delete()
+        return render(request, 'car_catalog.html',{
+            'products': car_show,
+            'user': abc
+    })
+    print(abc)
     return render(request, 'car_catalog.html',{
-        'products': car_show
+        'products': car_show,
+        'user': abc
     })
 
 @login_required()

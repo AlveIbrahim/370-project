@@ -1,7 +1,88 @@
 {% extends 'test.html' %}
 
 {% block content %}
-<style>
+<body style='background-color: #000'>
+    {% if products|length != 0%}
+    {% for product in products %}
+    {% if user == product.cst %}
+    <form method="post">
+        {%csrf_token%}
+    <div class='card mb-3 px-4 justify-content-between' style='background-color: orange;'>
+        <div class='row no-gutters'>
+            <div class='col-md-4'>
+                <img src="{{product.Car_image.url}}" class='card-img' style="height: 300px; width: 300px">
+            </div>
+            <div class='col-md-8'>
+                <div class="card-body">
+                    <h4 class="card-title">Basic Informations</h4>
+                    {% if product.has_driver == "No" %}
+                        <p class='card-text'><small class='text-muted'> Owner: </small> {{ product.cst }}</p>
+                        <p class='card-text'><small class='text-muted'> Model: </small> {{ product.model }}</p>
+                        <p class='card-text'><small class='text-muted'> Number plate: </small> {{ product.num_plate }}</p>
+                        <p class='card-text'><small class='text-muted'> Number of seat: </small> {{ product.num_of_seat }} seats</p>
+                        <p class='card-text'><small class='text-muted'> Type of car: </small> {{ product.type_of_car }}</p>
+                        <p class='card-text'><small class='text-muted'> Location: </small> {{ product.clocation }}</p>
+                        <p class='card-text'><small class='text-muted'> Driver Provided: </small> {{ product.has_driver }}</p>
+                        <button class="btn btn-primary" name='ondelete' onclick="location.href='/home_after_login'" style="background-color: black; color: white;">Delete</button>
+                        <textarea readonly hidden name='adad'>{{product.id}} </textarea>
+                    
+                    {% else %}
+                        <p class='card-text'><small class='text-muted'> Owner: </small> {{ product.cst }}</p>
+                        <p class='card-text'><small class='text-muted'> Model: </small> {{ product.model }}</p>
+                        <p class='card-text'><small class='text-muted'> Number plate: </small> {{ product.num_plate }}</p>
+                        <p class='card-text'><small class='text-muted'> Number of seat: </small> {{ product.num_of_seat }} seats</p>
+                        <p class='card-text'><small class='text-muted'> Type of car: </small> {{ product.type_of_car }}</p>
+                        <p class='card-text'><small class='text-muted'> Location: </small> {{ product.clocation }}</p>
+                        <p class='card-text'><small class='text-muted'> Driver Provided: </small> {{ product.has_driver }}</p>
+                        <p class='card-text'><small class='text-muted'> Driver Nid: </small> {{ product.Drivers_Nid }}</p>
+                        <p class='card-text'><small class='text-muted'> Driver Licence: </small>
+                            <img src="{{product.Driver_driving_license.url }}" class='img object-fit-cover border-0 rounded' style="height: 150px; width:150px">
+                        </p>
+                        <button class="btn btn-primary" name='ondelete' onclick="location.href='/home_after_login'" style="background-color: black; color: white;">Delete</button>
+                        <textarea readonly hidden name='adad'>{{product.id}} </textarea>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    {%endif%}
+    {% endfor %}
+    {%else%}
+        <h>No car for you</h>
+    {%endif%}
+    </body>
+    {% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <style>
     body {
         font-family: 'Helvetica Neue', sans-serif;
         margin: 0;
@@ -113,8 +194,8 @@
             </div>
         </div>
     </div>
-{% endfor %}     
-{% endblock content %}
+{% endfor %}      
+{% endblock content %} {% endcomment %}
 
 
 
