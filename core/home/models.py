@@ -40,7 +40,6 @@ class car_listing(models.Model):
     type_of_car=models.CharField(max_length=200, choices=TYPE_CHOICES, blank = False, null = False, default='')
     has_driver=models.CharField(max_length=7, choices=TYPE_CHOICES2, default='No')    
 
-
     
 class share(models.Model):
     sharer=models.ForeignKey(Customer, on_delete = models.CASCADE)
