@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Customer, car_listing, Car, Payment, share
+from .models import Customer, car_listing, Payment, share
 
 
 class SignupForm(UserCreationForm):
@@ -33,11 +33,6 @@ class cl(ModelForm):
         'clocation',
         'type_of_car')
 
-class lst(ModelForm):
-    
-    class Meta:
-        model=Car
-        fields=('customer_licence',)
 
 
 
