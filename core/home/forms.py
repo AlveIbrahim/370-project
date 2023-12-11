@@ -36,6 +36,7 @@ class cl(ModelForm):
 
 
 
+
 class SearchForm(ModelForm):
     class Meta:
         fields = ('location','seatnumber')

@@ -241,22 +241,7 @@ def contact(request):
         cont.save()
         return redirect('home_after_login')
     return render(request, 'contact.html')
-
-# def multiply_private(request):
-#     day=request.GET['days']
-#     amoun=int(day)*10000
-#     return render(request, 'show_amount.html', {'amoun':amoun})
-
-# def multiply_micro(request):
-#     day=request.GET['days']
-#     amoun=int(day)*13000
-#     return render(request, 'show_amount.html', {'amoun':amoun})
-
-# def multiply_mini_bus(request):
-#     day=request.GET['days']
-#     amoun=int(day)*20000
-#     return render(request, 'show_amount.html', {'amoun':amoun})
-
+    
 def ren_amount_private(request,plate):
 
     return render(request, 'ren_amount_private.html',{'plate':plate})
