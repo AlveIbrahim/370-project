@@ -1,5 +1,6 @@
 {% extends "test.html" %}
 {% block content %}
+
       <div class="container py-3">
         <header>
           <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
@@ -23,14 +24,32 @@
       {% if destination == car.destination %}
        {% if current_user != car.sharer %}
         <div class="card">
-            <a href="/payment"><img src="{{post.Car_image.url}}" class="card-img-top" alt="..."></a>
+          <form method="post" action="/rs">
+            {% csrf_token %}
               <div class="card-body">
-                <h5 class="card-title">Model Type: {{ car.type }}</h5>
-                <p class="card-text">Car Sharer: {{ car.sharer }}</p>
-                <p class="card-text">Location: {{ car.location}} </p>
-                <p class="card-text">Destination: {{ car.destination }}</p>
-                <p class="card-text">Number of Seats: {{ car.seats }}</p>
+                <div class="form-group">
+                <label for="type">Car Type:</label>
+                <textarea class="card-text" id="type" name="type" rows="1" readonly>{{ car.type }}</textarea>
               </div>
+            <div class="form-group">
+                <label for="sharer">Sharer:</label>
+                <textarea class="card-text" id="sharer" name="sharer" rows="1" readonly>{{ car.sharer }}</textarea>
+              </div>
+            <div class="form-group">
+                <label for="location">Start Location:</label>
+                <textarea class="card-text" id="location" name="location" rows="1" readonly>{{ car.location}}</textarea>
+              </div>
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <textarea class="card-text" id="destination" name="destination" rows="1" readonly>{{ car.destination }}</textarea>
+              </div>
+            <div class="form-group">
+                <label for="seats">Number of seats:</label>
+                <textarea class="card-text" id="seats" name="seats" rows="1" readonly>{{ car.seats }}</textarea>
+              </div>
+              <button class="btn btn-primary" type="submit">Request for Rideshare</button>
+              </div>
+            </form>
         </div>
         {% endif %}
         {% endif %}

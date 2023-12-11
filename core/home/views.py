@@ -39,6 +39,8 @@ def home_after_login(request):
 def rs(request):
     if request.method == 'POST':
         share_query = ShareSearch(request.POST)
+        sharer = request.POST.get('sharer')
+        print(sharer)
         if share_query.is_valid():
             cars = share.objects.filter(location=share_query.cleaned_data["location"])
             destination = share_query.cleaned_data["destination"]
@@ -237,6 +239,7 @@ def contact(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         feedback = request.POST.get('feedback')
+        print(feedback)
         cont = Contact(name=name, user_name=user_name, email=email, phone=phone,feedback=feedback, date = datetime.today())
         cont.save()
         return redirect('home_after_login')
