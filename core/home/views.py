@@ -286,6 +286,8 @@ def notification_view(request):
         notif_id = request.POST.get("notif_id")
         selected_notif = Notification.objects.get(id=notif_id)
         if 'delete' in request.POST:
+            selected_notif.delete()
+        elif 'decline' in request.POST:
             notif = Notification(sender=request.user, reciever=selected_notif.sender, message=f'Your request has been declined.', notif_type='declined')
             notif.save()
             selected_notif.delete()
