@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from home.models import car_listing, Customer, Payment, share, Contact, Notification
+from home.models import car_listing, Customer, Payment, share, Contact, Notification, cs_driver_ifo
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from .forms import SignupForm, cl, payment_rent, car_share, ShareSearch
@@ -80,10 +80,6 @@ def rent(request):
 @login_required()
 def car_Listing(request):
     if request.method == 'POST':
-        # form=request.POST
-        # if form.get('customer_licence'):
-        #     customer_licence = request.POST.get('customer_licence')
-        #     customer_licence.save()
         c_l = cl(request.POST, request.FILES)
         if c_l.is_valid():
             listing = c_l.save(commit=False)
@@ -167,6 +163,7 @@ def payment(request,plate):
     if request.method == 'POST':
         pay = payment_rent(request.POST, request.FILES)
         if pay.is_valid():
+            pay.inf=owner
             pay.save()
             return redirect('home_after_login')
         else:
@@ -236,6 +233,10 @@ def car_micro(request):
     car1 = car_listing.objects.filter(type_of_car="Micro Bus")
     car_show1=list(car1)
     abc = request.user
+    if request.method == 'POST':
+        customer_licence=request.POST.get('customer_licence')
+        tk=cs_driver_ifo(customer_licence=customer_licence, cst2=abc)
+        tk.save()
     return render(request, 'car_micro.html',{
         'products': car_show1,
         'user': abc
@@ -245,6 +246,11 @@ def car_private(request):
     car1 = car_listing.objects.filter(type_of_car="Private Car")
     car_show1=list(car1)
     abc = request.user
+    if request.method == 'POST':
+        customer_licence=request.POST.get('customer_licence')
+        tk=cs_driver_ifo(customer_licence=customer_licence, cst2=abc)
+        tk.save()
+
     return render(request, 'car_micro.html',{
         'products': car_show1,
         'user': abc
@@ -254,6 +260,10 @@ def car_mini(request):
     car1 = car_listing.objects.filter(type_of_car="Mini Bus")
     car_show1=list(car1)
     abc = request.user
+    if request.method == 'POST':
+        customer_licence=request.POST.get('customer_licence')
+        tk=cs_driver_ifo(customer_licence=customer_licence, cst2=abc)
+        tk.save()
     return render(request, 'car_micro.html',{
         'products': car_show1,
         'user': abc
